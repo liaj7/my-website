@@ -8,13 +8,14 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #F6F3EE;
-  --bg-card: #FFFFFF;
-  --text: #1A1A1A;
-  --text-secondary: #5C5C5C;
-  --accent: #C14E2B;
+  --bg: #0D0D0D;
+  --bg-card: #161616;
+  --bg-elevated: #1A1A1A;
+  --text: #F5F5F5;
+  --text-secondary: #A0A0A0;
+  --accent: #D4A574;
   --accent-light: #E8D5CC;
-  --border: #D9D4CD;
+  --border: #2A2A2A;
   --serif: 'DM Serif Display', Georgia, serif;
   --sans: 'Outfit', -apple-system, sans-serif;
   --mono: 'JetBrains Mono', monospace;
@@ -33,7 +34,7 @@ body {
   overflow-x: hidden;
 }
 
-::selection { background: var(--accent); color: #fff; }
+::selection { background: var(--accent); color: var(--bg); }
 
 /* ─── NAV ─── */
 nav {
@@ -46,7 +47,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(246, 243, 238, 0.85);
+  background: rgba(13, 13, 13, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid transparent;
@@ -87,37 +88,48 @@ nav.scrolled { border-bottom-color: var(--border); }
   gap: 4rem;
 }
 
-.hero-text { max-width: 560px; justify-self: end; }
+.hero-text { max-width: 600px; justify-self: end; }
 
-.hero-label {
+.hero-greeting {
   font-family: var(--mono);
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   opacity: 0;
   animation: fadeUp 0.6s 0.2s forwards;
 }
 
 .hero h1 {
   font-family: var(--serif);
-  font-size: clamp(2.8rem, 5vw, 4.2rem);
-  line-height: 1.1;
+  font-size: clamp(3.5rem, 6vw, 5.5rem);
+  line-height: 1.05;
   letter-spacing: -0.02em;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.5rem;
   opacity: 0;
   animation: fadeUp 0.6s 0.4s forwards;
 }
 
-.hero-subline {
-  font-size: 1.15rem;
-  font-weight: 300;
-  color: var(--text-secondary);
-  line-height: 1.55;
-  margin-bottom: 2rem;
+.hero-role {
+  font-family: var(--serif);
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-style: italic;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
   opacity: 0;
   animation: fadeUp 0.6s 0.6s forwards;
+}
+
+.hero-subline {
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  max-width: 480px;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.8s forwards;
 }
 
 .hero-cta {
@@ -134,7 +146,7 @@ nav.scrolled { border-bottom-color: var(--border); }
   border-bottom: 1.5px solid var(--accent);
   transition: gap 0.3s;
   opacity: 0;
-  animation: fadeUp 0.6s 0.8s forwards;
+  animation: fadeUp 0.6s 1s forwards;
 }
 
 .hero-cta:hover { gap: 0.85rem; }
@@ -154,8 +166,9 @@ nav.scrolled { border-bottom-color: var(--border); }
   max-width: 420px;
   aspect-ratio: 3/4;
   object-fit: cover;
+  object-position: center top;
   display: block;
-  filter: grayscale(15%) contrast(1.05);
+  filter: contrast(1.05) brightness(0.95);
 }
 
 .hero-photo::after {
@@ -167,6 +180,53 @@ nav.scrolled { border-bottom-color: var(--border); }
   bottom: -12px;
   border: 1.5px solid var(--accent);
   z-index: -1;
+}
+
+/* ─── EXPERIENCE STRIP ─── */
+.experience-strip {
+  padding: 4rem 3rem;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.experience-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.experience-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+.experience-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.experience-name {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.experience-role {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 /* ─── SECTIONS ─── */
@@ -199,41 +259,13 @@ section { padding: 6rem 3rem; }
 }
 
 .about-content {
-  columns: 2;
-  column-gap: 3rem;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 300;
-  line-height: 1.75;
+  line-height: 1.8;
   color: var(--text-secondary);
 }
 
-.about-content p { margin-bottom: 1.25rem; break-inside: avoid; }
 .about-content strong { font-weight: 500; color: var(--text); }
-
-.about-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-top: 3rem;
-  padding-top: 2.5rem;
-  border-top: 1px solid var(--border);
-}
-
-.stat-item {}
-
-.stat-number {
-  font-family: var(--serif);
-  font-size: 2.5rem;
-  color: var(--accent);
-  line-height: 1;
-  margin-bottom: 0.35rem;
-}
-
-.stat-desc {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  font-weight: 400;
-}
 
 /* ─── WORK ─── */
 .work { max-width: 1100px; margin: 0 auto; }
@@ -389,7 +421,7 @@ section { padding: 6rem 3rem; }
 
 .result-item {
   padding: 1rem;
-  background: var(--bg);
+  background: var(--bg-elevated);
 }
 
 .result-val {
@@ -464,7 +496,7 @@ section { padding: 6rem 3rem; }
 .tiktok-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.85);
+  background: rgba(0,0,0,0.9);
   z-index: 200;
   display: none;
   align-items: center;
@@ -621,9 +653,8 @@ footer {
 
   section { padding: 4rem 1.5rem; }
 
-  .about-content { columns: 1; }
-
-  .about-stats { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .experience-logos { gap: 2rem; }
+  .experience-name { font-size: 1.1rem; }
 
   .case-header { flex-wrap: wrap; gap: 1rem; }
   .case-metrics { text-align: left; }
@@ -634,8 +665,10 @@ footer {
 }
 
 @media (max-width: 600px) {
-  .hero h1 { font-size: 2.2rem; }
-  .about-stats { grid-template-columns: 1fr; gap: 1.5rem; }
+  .hero h1 { font-size: 2.8rem; }
+  .hero-role { font-size: 1.2rem; }
+  .experience-strip { padding: 3rem 1.5rem; }
+  .experience-logos { gap: 1.5rem; }
   .results-grid { grid-template-columns: 1fr 1fr; }
   .case-header { padding: 1.25rem 1.25rem; }
   .case-body-inner { padding: 0 1.25rem 1.5rem; }
@@ -648,7 +681,6 @@ footer {
 <nav id="navbar">
   <a href="#" class="nav-name">Lia Jun</a>
   <div class="nav-links">
-    <a href="#about">About</a>
     <a href="#work">Work</a>
     <a href="#content">Content</a>
     <a href="#contact">Contact</a>
@@ -658,51 +690,47 @@ footer {
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-text">
-    <div class="hero-label">Marketing · Strategy · Growth</div>
-    <h1>Marketer who owns outcomes end‑to‑end.</h1>
-    <p class="hero-subline">Brand-side, platform-side, agency-side. Full-stack marketer.</p>
+    <div class="hero-greeting">Welcome</div>
+    <h1>Hi! I'm Lia</h1>
+    <div class="hero-role">End-to-end Marketer</div>
+    <p class="hero-subline">I take products from zero to market — positioning, launch strategy, performance marketing, and everything in between. Brand-side, platform-side, agency-side.</p>
     <a href="#work" class="hero-cta">
       See my work
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"/></svg>
     </a>
   </div>
   <div class="hero-photo">
-    <img src="IMG_3326.JPG" alt="Lia Jun" />
+    <img src="profile.jpg" alt="Lia Jun" />
   </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="about reveal">
-    <div class="section-label">01 — About</div>
-    <div class="about-content">
-      <p>I grew up between Canada, Korea, and a few other places 🇺🇸🇰🇿🇷🇺 — which taught me early that <strong>context matters</strong>. What works in one market won't work in another, and the fastest way to learn is to try things and watch what happens.</p>
-      <p>I've worked <strong>brand-side</strong> (running the US market for a K-beauty company like my own small business), <strong>platform-side</strong> (helping D2C brands grow with Meta), and <strong>agency-side</strong> (managing performance marketing for Olive Young in Southeast Asia). Each role taught me something different: how to think like an owner, how to sell, and how to optimize.</p>
-      <p><strong>What I'm best at:</strong> taking a product or problem, figuring out the angle, and making it work — whether that means writing the copy myself, building the pitch deck, or cold-calling 40 prospects in a week.</p>
-      <p>Based somewhere between Korea and Thailand. Open to remote roles.</p>
-      <p>Currently exploring the intersection of <strong>marketing and web3</strong> — specifically how community ownership changes the way brands are built.</p>
+<!-- EXPERIENCE STRIP -->
+<div class="experience-strip reveal">
+  <div class="experience-label">Where I've Worked</div>
+  <div class="experience-logos">
+    <div class="experience-item">
+      <div class="experience-name">Meta</div>
+      <div class="experience-role">Client Solutions</div>
     </div>
-    <div class="about-stats">
-      <div class="stat-item">
-        <div class="stat-number">3</div>
-        <div class="stat-desc">Sides of the table — brand, platform, agency</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">3</div>
-        <div class="stat-desc">Languages — English, Korean, Russian</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">4+</div>
-        <div class="stat-desc">Markets worked — US, Korea, SEA, Japan</div>
-      </div>
+    <div class="experience-item">
+      <div class="experience-name">Aprilskin</div>
+      <div class="experience-role">US Market Lead</div>
+    </div>
+    <div class="experience-item">
+      <div class="experience-name">Madup</div>
+      <div class="experience-role">Performance Marketing</div>
+    </div>
+    <div class="experience-item">
+      <div class="experience-name">Olive Young</div>
+      <div class="experience-role">SEA Marketing</div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- WORK -->
 <section id="work">
   <div class="work">
-    <div class="section-label reveal">02 — Work</div>
+    <div class="section-label reveal">01 — Work</div>
 
     <!-- Theme 1 -->
     <div class="theme-group reveal">
@@ -717,7 +745,7 @@ footer {
             <div class="case-company">APR Corporation · Aprilskin US</div>
           </div>
           <div class="case-metrics">
-            <div><div class="metric-val">₩87M</div><div class="metric-label">Launch week</div></div>
+            <div><div class="metric-val">$65K</div><div class="metric-label">Launch week</div></div>
             <div><div class="metric-val">213%</div><div class="metric-label">ROAS</div></div>
           </div>
           <button class="case-toggle" aria-label="Expand">
@@ -744,8 +772,8 @@ footer {
             <div class="case-section-title">Results</div>
             <div class="results-grid">
               <div class="result-item">
-                <div class="result-val">₩87M</div>
-                <div class="result-label">Launch week revenue (~$65K)</div>
+                <div class="result-val">$65K</div>
+                <div class="result-label">Launch week revenue</div>
               </div>
               <div class="result-item">
                 <div class="result-val">213%</div>
@@ -983,7 +1011,7 @@ footer {
 <!-- CONTENT -->
 <section id="content">
   <div class="content-section">
-    <div class="section-label reveal">03 — Content</div>
+    <div class="section-label reveal">02 — Content</div>
     <div class="section-title reveal">Things I've made.</div>
 
     <div class="tiktok-grid reveal">
@@ -1034,7 +1062,7 @@ footer {
 <!-- CONTACT -->
 <section id="contact">
   <div class="contact reveal">
-    <div class="section-label">04 — Contact</div>
+    <div class="section-label">03 — Contact</div>
     <div class="section-title">Let's work together.</div>
     <p class="contact-sub">Open to remote roles. Currently based between Korea and Thailand.</p>
     <div class="contact-links">
