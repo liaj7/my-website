@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lia Jun — Brand Strategist & Performance Marketer</title>
-<meta name="description" content="Brand strategist and performance marketer. $65K product launches, 1,786% ROAS restructures, and 6-to-41 client growth across the US and Southeast Asia.">
+<meta name="description" content="Brand strategist and performance marketer. 11 product launches, 6.8x pipeline expansion, and three years of building playbooks from scratch.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -363,6 +363,9 @@ nav.scrolled {
 }
 .float-tag .emoji { font-size: 1rem; }
 
+/* Mobile-only tags (hidden on desktop) */
+.mobile-tags { display: none; }
+
 .float-tag.top-right {
   top: 2rem; right: -2.5rem;
   animation-delay: -0.5s;
@@ -471,18 +474,11 @@ section { padding: 5rem 3rem; }
   font-weight: 500;
 }
 
-.about-tagline {
-  font-family: var(--serif);
-  font-size: 1.05rem;
-  font-style: italic;
-  color: var(--text);
-  margin-top: 2rem;
-}
-
 /* — TIMELINE — */
 .timeline {
   display: flex;
-  gap: 1rem;
+  align-items: stretch;
+  gap: 0;
   margin-top: 3rem;
 }
 
@@ -512,6 +508,31 @@ section { padding: 5rem 3rem; }
 .timeline-card.meta::before { background: var(--meta-blue); }
 .timeline-card.madup::before { background: var(--madup); }
 
+/* Timeline connector arrows between cards */
+.timeline-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  flex-shrink: 0;
+  color: var(--text-dim);
+  font-size: 1rem;
+}
+.timeline-connector svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--text-dim);
+  opacity: 0.4;
+}
+
+.timeline-logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 6px;
+  margin-bottom: 0.65rem;
+}
+
 .timeline-year {
   font-family: var(--mono);
   font-size: 0.65rem;
@@ -523,13 +544,33 @@ section { padding: 5rem 3rem; }
   font-size: 1rem;
   font-weight: 600;
   color: var(--text);
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.35rem;
+}
+.timeline-what {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  font-weight: 400;
+  line-height: 1.45;
+  margin-bottom: 0.5rem;
 }
 .timeline-role {
   font-size: 0.82rem;
   color: var(--text-secondary);
-  font-weight: 300;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
 }
+.timeline-role::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.timeline-card.apr .timeline-role::before { background: var(--apr); }
+.timeline-card.meta .timeline-role::before { background: var(--meta-blue); }
+.timeline-card.madup .timeline-role::before { background: var(--madup); }
 
 /* — WORK — */
 .work { max-width: 1000px; margin: 0 auto; }
@@ -1038,11 +1079,40 @@ footer {
   .hero-badge { margin: 0 auto 1.5rem; }
   .float-tag { display: none; }
 
+  .mobile-tags {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    order: 3;
+  }
+  .mobile-tags .mobile-tag {
+    background: var(--bg-card);
+    border: 1px solid rgba(45,42,38,0.08);
+    border-radius: var(--radius-sm);
+    padding: 0.4rem 0.7rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    box-shadow: var(--shadow-sm);
+  }
+  .mobile-tags .mobile-tag .emoji { font-size: 0.85rem; }
+
   .metrics-strip { grid-template-columns: repeat(2, 1fr); padding: 0 1.5rem 3rem; }
 
   section { padding: 3.5rem 1.5rem; }
 
-  .timeline { flex-direction: column; gap: 0.75rem; }
+  .timeline { flex-direction: column; gap: 0; }
+  .timeline-connector {
+    width: 100%;
+    height: 1.5rem;
+    transform: rotate(90deg);
+  }
+  .timeline-connector svg { width: 16px; height: 16px; }
 
   .case-header { flex-wrap: wrap; gap: 0.75rem; }
   .case-metrics { text-align: left; }
@@ -1092,8 +1162,8 @@ footer {
     <div class="hero-text">
       <div class="hero-badge"><span class="dot"></span> Open to opportunities</div>
       <p class="hero-greeting">Hey, I'm Lia.</p>
-      <h1>I find the story your <span class="highlight">product is missing</span>.</h1>
-      <p class="hero-sub">Brand strategy, performance marketing, content production. Three years of turning overlooked gaps into real revenue across the US and Southeast Asia.</p>
+      <h1>No playbook? <span class="highlight">I'll build one</span>.</h1>
+      <p class="hero-sub">Brand strategy, performance marketing, content production. Three years of walking into blank slates and turning them into revenue.</p>
       <div class="hero-actions">
         <a href="#work" class="btn-primary">
           See the work
@@ -1116,9 +1186,16 @@ footer {
           <span class="emoji">📈</span> $65K launch week
         </div>
         <div class="float-tag bottom-right">
-          <span class="emoji">🎬</span> Scripts, shoots, edits
+          <span class="emoji">🎬</span> Creator too
         </div>
       </div>
+    </div>
+
+    <!-- Mobile-only floating tags -->
+    <div class="mobile-tags">
+      <span class="mobile-tag"><span class="emoji">🔀</span> Brand. Platform. Agency.</span>
+      <span class="mobile-tag"><span class="emoji">📈</span> $65K launch week</span>
+      <span class="mobile-tag"><span class="emoji">🎬</span> Creator too</span>
     </div>
   </div>
 </section>
@@ -1126,20 +1203,20 @@ footer {
 <!-- METRICS STRIP -->
 <div class="metrics-strip reveal">
   <div class="metric-card">
-    <div class="metric-number">122%→1,786%</div>
-    <div class="metric-desc">catalog ROAS rebuilt</div>
+    <div class="metric-number">11</div>
+    <div class="metric-desc">product launches</div>
   </div>
   <div class="metric-card">
-    <div class="metric-number">$65K</div>
-    <div class="metric-desc">launch week revenue</div>
+    <div class="metric-number">6.8x</div>
+    <div class="metric-desc">pipeline expansion</div>
   </div>
   <div class="metric-card">
-    <div class="metric-number">233%</div>
-    <div class="metric-desc">ROAS on self-made ads</div>
+    <div class="metric-number">+59%</div>
+    <div class="metric-desc">QoQ ad spend growth</div>
   </div>
   <div class="metric-card">
-    <div class="metric-number">6→41</div>
-    <div class="metric-desc">clients in 2 months</div>
+    <div class="metric-number">+36%</div>
+    <div class="metric-desc">YoY revenue growth</div>
   </div>
 </div>
 
@@ -1151,27 +1228,35 @@ footer {
     <div class="about-content">
       <p><strong>My strongest skill is seeing what's not there.</strong> I once spent days reading competitor reviews and found an entire customer segment everyone else ignored. That insight became the positioning for a product launch that did <strong>$65K in its first week</strong>.</p>
       <p>That's how I work. I study what real people say, find the opportunity others overlook, then build everything to capture it. The positioning. The copy. The creative. The campaign. Not just the strategy deck. <em>The actual work.</em></p>
-      <p>Three years across brand-side at <strong>Aprilskin</strong>, platform-side at <strong>Meta Korea</strong>, agency-side at <strong>Madup</strong>. Every time: new market, new playbook, figured it out fast.</p>
+      <p>Three years across brand-side at <strong>Aprilskin</strong>, platform-side at <strong>Meta Korea</strong>, agency-side at <strong>Madup</strong>. Every time: no playbook. Sharp instincts did the rest.</p>
     </div>
-    <p class="about-tagline">Fast. Sharp instincts. Adapts anywhere.</p>
 
     <div class="timeline">
       <div class="timeline-card apr">
+        <img src="../logo-apr.png" alt="APR" class="timeline-logo" />
         <div class="timeline-year">2021 - 2023</div>
         <div class="timeline-company">APR Corporation</div>
-        <div class="timeline-role">K-beauty e-commerce, US market</div>
+        <div class="timeline-what">K-beauty e-commerce, US market</div>
         <div class="timeline-role">Brand Manager</div>
       </div>
+      <div class="timeline-connector">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+      </div>
       <div class="timeline-card meta">
+        <img src="../logo-meta.jpg" alt="Meta" class="timeline-logo" />
         <div class="timeline-year">2023 - 2024</div>
         <div class="timeline-company">Meta Korea</div>
-        <div class="timeline-role">Facebook & Instagram ads platform</div>
+        <div class="timeline-what">Facebook & Instagram ads platform</div>
         <div class="timeline-role">Client Solutions Manager</div>
       </div>
+      <div class="timeline-connector">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+      </div>
       <div class="timeline-card madup">
+        <img src="../logo-madup.png" alt="Madup" class="timeline-logo" />
         <div class="timeline-year">2025</div>
         <div class="timeline-company">Madup</div>
-        <div class="timeline-role">Performance marketing agency</div>
+        <div class="timeline-what">Performance marketing agency</div>
         <div class="timeline-role">Account Manager</div>
       </div>
     </div>
@@ -1231,7 +1316,6 @@ footer {
           </div>
           <div class="case-metrics">
             <div><div class="metric-val">$65K</div><div class="metric-label">Launch week</div></div>
-            <div><div class="metric-val">213%</div><div class="metric-label">ROAS</div></div>
           </div>
           <button class="case-toggle" aria-label="Expand"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg></button>
         </div>
@@ -1263,7 +1347,6 @@ footer {
             <div class="case-lesson">No CRM existed for the US market. I built it from zero. Then proved a 3-day targeted promotion could match a full 7-day campaign.</div>
           </div>
           <div class="case-metrics">
-            <div><div class="metric-val">1.7x</div><div class="metric-label">Open rate</div></div>
             <div><div class="metric-val">$17K</div><div class="metric-label">CRM revenue</div></div>
           </div>
           <button class="case-toggle" aria-label="Expand"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg></button>
@@ -1304,7 +1387,6 @@ footer {
           </div>
           <div class="case-metrics">
             <div><div class="metric-val">6→41</div><div class="metric-label">Clients</div></div>
-            <div><div class="metric-val">+59%</div><div class="metric-label">QoQ spend</div></div>
           </div>
           <button class="case-toggle" aria-label="Expand"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg></button>
         </div>
@@ -1372,8 +1454,7 @@ footer {
             <div class="case-lesson">Three markets, three different audiences, one question: what actually works here? A/B tested everything, restructured campaigns, turned a 122% catalog ROAS into 1,786%.</div>
           </div>
           <div class="case-metrics">
-            <div><div class="metric-val">+53%</div><div class="metric-label">ROAS</div></div>
-            <div><div class="metric-val">+148%</div><div class="metric-label">Purchases</div></div>
+            <div><div class="metric-val">1,786%</div><div class="metric-label">Catalog ROAS</div></div>
           </div>
           <button class="case-toggle" aria-label="Expand"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg></button>
         </div>
