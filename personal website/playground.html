@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lia Jun — Design Playground</title>
+<title>Lia Jun — Brand Strategist & Performance Marketer</title>
+<meta name="description" content="Brand strategist and performance marketer. $65K product launches, 1,786% ROAS restructures, and 6-to-41 client growth across the US and Southeast Asia.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -407,6 +408,7 @@ nav.scrolled {
   font-weight: 700;
   color: var(--peach);
   line-height: 1.2;
+  white-space: nowrap;
 }
 .metric-desc {
   font-size: 0.72rem;
@@ -467,6 +469,14 @@ section { padding: 5rem 3rem; }
   font-style: normal;
   color: var(--peach);
   font-weight: 500;
+}
+
+.about-tagline {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--text);
+  margin-top: 2rem;
 }
 
 /* — TIMELINE — */
@@ -730,6 +740,124 @@ section { padding: 5rem 3rem; }
   max-width: 560px;
 }
 
+.tiktok-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+.tiktok-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9/16;
+  background: var(--bg-card);
+  border: 1px solid rgba(45,42,38,0.06);
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+.tiktok-wrapper iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+.tiktok-wrapper blockquote { margin: 0; max-width: 100% !important; min-width: 0 !important; }
+.tiktok-cta {
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 2.5rem;
+}
+.tiktok-cta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.6rem 1.5rem;
+  border: 1.5px solid rgba(45,42,38,0.1);
+  border-radius: 100px;
+  transition: all 0.2s;
+}
+.tiktok-cta a:hover { border-color: var(--peach); color: var(--peach); }
+
+.collage-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(45,42,38,0.06);
+}
+.collage-item {
+  background: var(--bg-card);
+  border: 1px solid rgba(45,42,38,0.06);
+  overflow: hidden;
+  border-radius: var(--radius);
+  position: relative;
+}
+.collage-item img, .collage-item video {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+.collage-label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+}
+.collage-label-title { font-size: 0.85rem; font-weight: 500; color: #fff; margin-bottom: 0.15rem; }
+.collage-label-desc { font-size: 0.75rem; color: rgba(255,255,255,0.7); font-weight: 300; }
+
+/* Meta case card cycle layout */
+.meta-cycle-layout {
+  display: flex; gap: 2rem; margin: 1.25rem 0;
+  align-items: flex-start;
+}
+.meta-diagram { flex-shrink: 0; }
+.meta-phases { flex: 1; }
+.cycle-svg { width: 190px; height: 190px; }
+.cycle-node-bg { fill: var(--bg-elevated); stroke: rgba(45,42,38,0.1); stroke-width: 1.5; }
+.cycle-label { font-family: var(--sans); font-size: 10px; font-weight: 600; fill: var(--text); text-anchor: middle; }
+.cycle-sublabel { font-family: var(--sans); font-size: 7.5px; fill: var(--text-dim); text-anchor: middle; }
+.cycle-arrow { fill: none; stroke: rgba(45,42,38,0.15); stroke-width: 1.2; }
+.cycle-arrowhead { fill: var(--text-dim); }
+.phase {
+  display: flex; gap: 0.85rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(45,42,38,0.06);
+}
+.phase:last-child { border-bottom: none; }
+.phase-number {
+  width: 26px; height: 26px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; font-weight: 600; flex-shrink: 0;
+}
+.phase-1 .phase-number { background: var(--meta-bg); color: var(--meta-blue); border: 1px solid var(--meta-border); }
+.phase-2 .phase-number { background: var(--madup-bg); color: var(--madup); border: 1px solid var(--madup-border); }
+.phase-3 .phase-number { background: var(--apr-bg); color: var(--apr); border: 1px solid var(--apr-border); }
+.phase-content { flex: 1; }
+.phase-title { font-size: 0.85rem; font-weight: 500; color: var(--text); margin-bottom: 0.15rem; }
+.phase-desc { font-size: 0.8rem; color: var(--text-secondary); font-weight: 300; line-height: 1.55; }
+.lesson-box {
+  background: var(--bg-elevated);
+  border-left: 3px solid var(--meta-blue);
+  padding: 0.85rem 1rem;
+  margin-top: 1rem;
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+}
+.lesson-box p {
+  font-size: 0.85rem; color: var(--text-secondary);
+  line-height: 1.55; margin-bottom: 0; font-style: italic;
+}
+.results-inline {
+  display: flex; gap: 1.75rem; margin-top: 1rem;
+  padding-top: 0.85rem; border-top: 1px solid rgba(45,42,38,0.06);
+  flex-wrap: wrap;
+}
+.results-inline .metric { text-align: left; }
+.results-inline .metric-val { font-size: 1.2rem; }
+
 /* — QUIZ — */
 .quiz-section { max-width: 700px; margin: 0 auto; }
 .quiz-box {
@@ -918,6 +1046,10 @@ footer {
 
   .case-header { flex-wrap: wrap; gap: 0.75rem; }
   .case-metrics { text-align: left; }
+  .tiktok-row { grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+  .collage-row { grid-template-columns: 1fr; }
+  .meta-cycle-layout { flex-direction: column; }
+  .meta-diagram { display: flex; justify-content: center; }
 }
 
 @media (max-width: 600px) {
@@ -926,16 +1058,18 @@ footer {
   .hero-photo-wrapper { width: 240px; height: 290px; }
   .metrics-strip { gap: 0.65rem; }
   .metric-card { padding: 1rem; }
-  .metric-number { font-size: 1.3rem; }
+  .metric-number { font-size: 0.95rem; }
   .results-grid { grid-template-columns: 1fr 1fr; }
   .case-header { padding: 1rem; }
   .case-body-inner { padding: 0 1rem 1.25rem; }
+  .tiktok-row { gap: 0.5rem; }
+  .results-inline { gap: 1rem; }
 }
 </style>
 </head>
 <body>
 
-<div class="playground-banner">DESIGN PLAYGROUND — This won't affect your live site</div>
+<div class="playground-banner">DESIGN PLAYGROUND | This won't affect your live site</div>
 
 <!-- NAV -->
 <nav id="navbar">
@@ -943,7 +1077,7 @@ footer {
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#work">Work</a>
-    <a href="#content-section">Content</a>
+    <a href="#content">Content</a>
     <a href="#contact" class="nav-cta">Say hi</a>
   </div>
 </nav>
@@ -959,10 +1093,10 @@ footer {
       <div class="hero-badge"><span class="dot"></span> Open to opportunities</div>
       <p class="hero-greeting">Hey, I'm Lia.</p>
       <h1>I find the story your <span class="highlight">product is missing</span>.</h1>
-      <p class="hero-sub">Growth marketer who does the strategy AND the execution. Brand launches, performance campaigns, and content — across the US, Korea, and Southeast Asia.</p>
+      <p class="hero-sub">Brand strategy, performance marketing, content production. Three years of turning overlooked gaps into real revenue across the US and Southeast Asia.</p>
       <div class="hero-actions">
         <a href="#work" class="btn-primary">
-          See my work
+          See the work
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"/></svg>
         </a>
         <a href="#about" class="btn-ghost">More about me</a>
@@ -976,13 +1110,13 @@ footer {
           <img src="../profile.jpg" alt="Lia Jun" />
         </div>
         <div class="float-tag top-right">
-          <span class="emoji">🌏</span> 3 markets, 3 roles
+          <span class="emoji">🔀</span> Brand. Platform. Agency.
         </div>
         <div class="float-tag bottom-left">
           <span class="emoji">📈</span> $65K launch week
         </div>
         <div class="float-tag bottom-right">
-          <span class="emoji">🎬</span> Creator too
+          <span class="emoji">🎬</span> Scripts, shoots, edits
         </div>
       </div>
     </div>
@@ -992,20 +1126,20 @@ footer {
 <!-- METRICS STRIP -->
 <div class="metrics-strip reveal">
   <div class="metric-card">
-    <div class="metric-number">3</div>
-    <div class="metric-desc">countries worked in</div>
+    <div class="metric-number">122%→1,786%</div>
+    <div class="metric-desc">catalog ROAS rebuilt</div>
   </div>
   <div class="metric-card">
     <div class="metric-number">$65K</div>
-    <div class="metric-desc">product launch week</div>
+    <div class="metric-desc">launch week revenue</div>
   </div>
   <div class="metric-card">
-    <div class="metric-number">213%</div>
-    <div class="metric-desc">ROAS on launch</div>
+    <div class="metric-number">233%</div>
+    <div class="metric-desc">ROAS on self-made ads</div>
   </div>
   <div class="metric-card">
-    <div class="metric-number">+583%</div>
-    <div class="metric-desc">client portfolio growth</div>
+    <div class="metric-number">6→41</div>
+    <div class="metric-desc">clients in 2 months</div>
   </div>
 </div>
 
@@ -1013,27 +1147,31 @@ footer {
 <section id="about">
   <div class="about reveal">
     <div class="section-label">About</div>
-    <div class="section-title">The short version.</div>
+    <div class="section-title">What I actually do.</div>
     <div class="about-content">
-      <p>I once spent days reading competitor reviews and found an entire customer segment everyone else was ignoring. That insight became the positioning for a product launch that did <strong>$65K in its first week</strong>.</p>
-      <p>That's how I work. I study what real people say, find the angle others miss, then <em>build everything</em> — the positioning, the copy, the creative, the campaign. Not just the strategy deck. The actual thing.</p>
-      <p>Three years. Brand-side at <strong>Aprilskin</strong>, platform-side at <strong>Meta Korea</strong>, agency-side at <strong>Madup</strong>. Every time: new market, new role, figured it out fast.</p>
+      <p><strong>My strongest skill is seeing what's not there.</strong> I once spent days reading competitor reviews and found an entire customer segment everyone else ignored. That insight became the positioning for a product launch that did <strong>$65K in its first week</strong>.</p>
+      <p>That's how I work. I study what real people say, find the opportunity others overlook, then build everything to capture it. The positioning. The copy. The creative. The campaign. Not just the strategy deck. <em>The actual work.</em></p>
+      <p>Three years across brand-side at <strong>Aprilskin</strong>, platform-side at <strong>Meta Korea</strong>, agency-side at <strong>Madup</strong>. Every time: new market, new playbook, figured it out fast.</p>
     </div>
+    <p class="about-tagline">Fast. Sharp instincts. Adapts anywhere.</p>
 
     <div class="timeline">
       <div class="timeline-card apr">
-        <div class="timeline-year">2021 — 2023</div>
+        <div class="timeline-year">2021 - 2023</div>
         <div class="timeline-company">APR Corporation</div>
-        <div class="timeline-role">Brand Manager, US Market</div>
+        <div class="timeline-role">K-beauty e-commerce, US market</div>
+        <div class="timeline-role">Brand Manager</div>
       </div>
       <div class="timeline-card meta">
-        <div class="timeline-year">2023 — 2024</div>
+        <div class="timeline-year">2023 - 2024</div>
         <div class="timeline-company">Meta Korea</div>
+        <div class="timeline-role">Facebook & Instagram ads platform</div>
         <div class="timeline-role">Client Solutions Manager</div>
       </div>
       <div class="timeline-card madup">
         <div class="timeline-year">2025</div>
         <div class="timeline-company">Madup</div>
+        <div class="timeline-role">Performance marketing agency</div>
         <div class="timeline-role">Account Manager</div>
       </div>
     </div>
@@ -1044,7 +1182,7 @@ footer {
 <section id="work">
   <div class="work">
     <div class="section-label reveal">Work</div>
-    <div class="section-title reveal">Results, not just resumes.</div>
+    <div class="section-title reveal">Results, not resumes.</div>
     <div class="section-subtitle reveal">Every project started from a gap nobody else noticed.</div>
 
     <!-- Brand Marketing -->
@@ -1057,7 +1195,7 @@ footer {
           <div class="case-header-left">
             <span class="company-tag company-apr">APR Corporation</span>
             <div class="case-name">US Website Localization</div>
-            <div class="case-lesson">Pushed for a full site overhaul nobody asked for. The US website was a copy of the Korean version — no amount of ad spend would fix that trust gap.</div>
+            <div class="case-lesson">The US site was a carbon copy of the Korean version. No amount of ad spend would fix that trust gap. I pushed for a full overhaul nobody asked for.</div>
           </div>
           <div class="case-metrics">
             <div><div class="metric-val">+44%</div><div class="metric-label">Page value</div></div>
@@ -1066,13 +1204,14 @@ footer {
         </div>
         <div class="case-body"><div class="case-body-inner">
           <div class="case-section-title">The Challenge</div>
-          <p>The US site wasn't just badly translated — it was a full copy of the Korean version. American consumers couldn't connect with it.</p>
+          <p>The US site wasn't just badly translated. It followed Korean e-commerce conventions: page structures, product images, model photography. American consumers couldn't trust it, and the data showed it. High bounce rates, low scroll depth, poor page value.</p>
           <div class="case-section-title">What I Did</div>
           <ul>
             <li>Benchmarked US competitors (Glossier, The Ordinary, Drunk Elephant)</li>
             <li>Rewrote product pages for American shoppers: shorter copy, toggle layouts, reviews above fold</li>
             <li>Directed photoshoots with diverse models to reflect US audience</li>
             <li>Built article content section from scratch to increase time-on-site</li>
+            <li>Started with highest-traffic pages, proved results, then scaled across the full site</li>
           </ul>
           <div class="case-section-title">Results</div>
           <div class="results-grid">
@@ -1088,7 +1227,7 @@ footer {
           <div class="case-header-left">
             <span class="company-tag company-apr">APR Corporation</span>
             <div class="case-name">Cleansing Balm US Launch</div>
-            <div class="case-lesson">Found the gap by reading hundreds of competitor reviews. People with acne-prone skin wanted a cleansing balm — nobody was making one for them.</div>
+            <div class="case-lesson">Hundreds of competitor reviews revealed a segment being ignored: acne-prone skin. Nobody was making a cleansing balm for them. So I did.</div>
           </div>
           <div class="case-metrics">
             <div><div class="metric-val">$65K</div><div class="metric-label">Launch week</div></div>
@@ -1115,6 +1254,40 @@ footer {
           </div>
         </div></div>
       </div>
+
+      <div class="case-card" onclick="toggleCase(this)">
+        <div class="case-header">
+          <div class="case-header-left">
+            <span class="company-tag company-apr">APR Corporation</span>
+            <div class="case-name">Email Marketing System</div>
+            <div class="case-lesson">No CRM existed for the US market. I built it from zero. Then proved a 3-day targeted promotion could match a full 7-day campaign.</div>
+          </div>
+          <div class="case-metrics">
+            <div><div class="metric-val">1.7x</div><div class="metric-label">Open rate</div></div>
+            <div><div class="metric-val">$17K</div><div class="metric-label">CRM revenue</div></div>
+          </div>
+          <button class="case-toggle" aria-label="Expand"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg></button>
+        </div>
+        <div class="case-body"><div class="case-body-inner">
+          <div class="case-section-title">The Challenge</div>
+          <p>APR had no email marketing for the US market. Generic templates, no segmentation, every promotion manually edited from scratch.</p>
+          <div class="case-section-title">What I Did</div>
+          <ul>
+            <li>Redesigned email templates to match brand visual identity</li>
+            <li>Built subscriber segments by purchase history: VVIP, VIP, and regular</li>
+            <li>Created automated post-purchase sequences timed to US shipping windows</li>
+            <li>Day 2: usage tips, product pairing, review request</li>
+            <li>Week 6: repurchase discount, complementary product recommendations</li>
+            <li>Proved 3-day targeted promotions matched 7-day campaign revenue at lower cost</li>
+          </ul>
+          <div class="case-section-title">Results</div>
+          <div class="results-grid">
+            <div class="result-item"><div class="result-val">1.7x</div><div class="result-label">Email open rate</div></div>
+            <div class="result-item"><div class="result-val">+70%</div><div class="result-label">Conversion rate</div></div>
+            <div class="result-item"><div class="result-val">$17K</div><div class="result-label">Additional CRM revenue</div></div>
+          </div>
+        </div></div>
+      </div>
     </div>
 
     <!-- Performance & Growth -->
@@ -1127,27 +1300,66 @@ footer {
           <div class="case-header-left">
             <span class="company-tag company-meta">Meta Korea</span>
             <div class="case-name">Client Acquisition & Ad Solutions</div>
-            <div class="case-lesson">Experienced the full sales cycle. Learned that selling is really about helping.</div>
+            <div class="case-lesson">One month in, my senior left for four weeks. I ran the full sales cycle solo: prospect, pitch, optimize, retain. 35 new brands in 2 months.</div>
           </div>
           <div class="case-metrics">
-            <div><div class="metric-val">+583%</div><div class="metric-label">Client growth</div></div>
+            <div><div class="metric-val">6→41</div><div class="metric-label">Clients</div></div>
             <div><div class="metric-val">+59%</div><div class="metric-label">QoQ spend</div></div>
           </div>
           <button class="case-toggle" aria-label="Expand"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg></button>
         </div>
         <div class="case-body"><div class="case-body-inner">
-          <p>Joined Meta Korea as a Client Solutions Manager. One month in, my senior left for 4 weeks and I managed the portfolio alone.</p>
-          <div class="case-section-title">What I Did</div>
-          <ul>
-            <li>Built prospect pipeline from zero — pitched and onboarded 35 new brands in 2 months</li>
-            <li>A/B tested Reels ads — 80% more effective (CPM -18%, CTR +12%)</li>
-            <li>Found root cause of recurring ad disapprovals, ran compliance seminar for 60 staff</li>
-          </ul>
-          <div class="case-section-title">Results</div>
-          <div class="results-grid">
-            <div class="result-item"><div class="result-val">+583%</div><div class="result-label">Client growth</div></div>
-            <div class="result-item"><div class="result-val">+59%</div><div class="result-label">QoQ ad spend</div></div>
-            <div class="result-item"><div class="result-val">-57%</div><div class="result-label">Ad disapprovals</div></div>
+          <p>Joined Meta Korea as a Client Solutions Manager with minimal onboarding. One month in, my senior left for four weeks. I managed the portfolio alone and experienced every stage of the sales cycle firsthand.</p>
+          <div class="meta-cycle-layout">
+            <div class="meta-diagram">
+              <svg class="cycle-svg" viewBox="0 0 200 200">
+                <path d="M 120 42 C 155 60, 168 100, 150 135" class="cycle-arrow" marker-end="url(#ah)"/>
+                <path d="M 132 152 C 115 175, 82 175, 66 152" class="cycle-arrow" marker-end="url(#ah)"/>
+                <path d="M 50 135 C 32 100, 45 60, 80 42" class="cycle-arrow" marker-end="url(#ah)"/>
+                <defs><marker id="ah" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0 0, 7 2.5, 0 5" class="cycle-arrowhead"/></marker></defs>
+                <rect x="55" y="12" width="90" height="36" rx="8" class="cycle-node-bg"/>
+                <text x="100" y="30" class="cycle-label">Acquire</text>
+                <text x="100" y="42" class="cycle-sublabel">Prospect · Pitch · Close</text>
+                <rect x="108" y="132" width="90" height="36" rx="8" class="cycle-node-bg"/>
+                <text x="153" y="150" class="cycle-label">Optimize</text>
+                <text x="153" y="162" class="cycle-sublabel">Analyze · Test · Improve</text>
+                <rect x="2" y="132" width="90" height="36" rx="8" class="cycle-node-bg"/>
+                <text x="47" y="150" class="cycle-label">Retain</text>
+                <text x="47" y="162" class="cycle-sublabel">Solve · Educate · Grow</text>
+              </svg>
+            </div>
+            <div class="meta-phases">
+              <div class="phase phase-1">
+                <div class="phase-number">1</div>
+                <div class="phase-content">
+                  <div class="phase-title">Acquire</div>
+                  <div class="phase-desc">Built a prospect pipeline from zero. Co-hosted a seminar with Qoo10, surveyed attendees, ran cold outreach. Pitched and onboarded 35 new brands in 2 months.</div>
+                </div>
+              </div>
+              <div class="phase phase-2">
+                <div class="phase-number">2</div>
+                <div class="phase-content">
+                  <div class="phase-title">Optimize</div>
+                  <div class="phase-desc">Weekly account analysis across the full portfolio. A/B tested Reels ads and found them 80% more effective (CPM -18%, CTR +12%). Recommended Advantage+ Shopping Campaigns and demographic-based ROAS bid adjustments.</div>
+                </div>
+              </div>
+              <div class="phase phase-3">
+                <div class="phase-number">3</div>
+                <div class="phase-content">
+                  <div class="phase-title">Retain</div>
+                  <div class="phase-desc">Real-time troubleshooting via KakaoTalk. Found the root cause of recurring ad disapprovals and organized a compliance seminar for 60 staff. Disapprovals dropped 57%.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lesson-box">
+            <p>"Client meetings aren't sales calls. They're where you find opportunities to align your goals with theirs. Help them grow, and the quota follows."</p>
+          </div>
+          <div class="results-inline">
+            <div class="metric"><div class="metric-val">6→41</div><div class="metric-label">Client growth</div></div>
+            <div class="metric"><div class="metric-val">+59%</div><div class="metric-label">QoQ ad spend</div></div>
+            <div class="metric"><div class="metric-val">-57%</div><div class="metric-label">Ad disapprovals</div></div>
+            <div class="metric"><div class="metric-val">80%</div><div class="metric-label">Reels effectiveness lift</div></div>
           </div>
         </div></div>
       </div>
@@ -1157,7 +1369,7 @@ footer {
           <div class="case-header-left">
             <span class="company-tag company-madup">Madup</span>
             <div class="case-name">Olive Young SEA Performance Marketing</div>
-            <div class="case-lesson">A/B tested creatives across 3 markets, restructured campaigns to cut waste and scale winners.</div>
+            <div class="case-lesson">Three markets, three different audiences, one question: what actually works here? A/B tested everything, restructured campaigns, turned a 122% catalog ROAS into 1,786%.</div>
           </div>
           <div class="case-metrics">
             <div><div class="metric-val">+53%</div><div class="metric-label">ROAS</div></div>
@@ -1167,11 +1379,12 @@ footer {
         </div>
         <div class="case-body"><div class="case-body-inner">
           <div class="case-section-title">The Challenge</div>
-          <p>Olive Young expanding into SEA — each market had different consumer behaviors, price sensitivities, and content preferences.</p>
+          <p>Olive Young expanding into Southeast Asia needed performance marketing across Singapore, Philippines, and Malaysia. Each market had different consumer behaviors, price sensitivities, and content preferences. A one-size-fits-all campaign wouldn't work.</p>
           <div class="case-section-title">What I Did</div>
           <ul>
             <li>Managed ad accounts across Meta and TikTok in Singapore, Philippines, and Malaysia</li>
             <li>A/B tested visual tone (dark vs. pastel) and messaging (discount vs. product-focused)</li>
+            <li>Philippines: built a luxury targeting campaign for higher-income demographics</li>
             <li>Malaysia catalog ROAS improved from 122% to 1,786% after restructure</li>
           </ul>
           <div class="case-section-title">Results (May to June)</div>
@@ -1179,8 +1392,60 @@ footer {
             <div class="result-item"><div class="result-val">+53%</div><div class="result-label">ROAS growth</div></div>
             <div class="result-item"><div class="result-val">+148%</div><div class="result-label">Purchase growth</div></div>
             <div class="result-item"><div class="result-val">-36%</div><div class="result-label">Purchase CPA</div></div>
+            <div class="result-item"><div class="result-val">+30%</div><div class="result-label">CTR improvement</div></div>
           </div>
         </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section id="content">
+  <div class="content-section">
+    <div class="section-label reveal">Content</div>
+    <div class="section-title reveal">I make the content, too.</div>
+    <p class="content-intro reveal">Most marketers brief creatives. I've been the creative. At Aprilskin, I produced ad content that hit 233% ROAS. On TikTok, I script, film, and edit from scratch. Not a side hobby. Proof that I understand content from the inside out.</p>
+
+    <div class="tiktok-row reveal">
+      <div class="tiktok-wrapper">
+        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@1it_u/video/7550179896018930952" data-video-id="7550179896018930952" style="max-width:100%;min-width:100%;border:none;">
+          <section><a target="_blank" href="https://www.tiktok.com/@1it_u">@1it_u</a></section>
+        </blockquote>
+      </div>
+      <div class="tiktok-wrapper">
+        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@1it_u/video/7487917007287962886" data-video-id="7487917007287962886" style="max-width:100%;min-width:100%;border:none;">
+          <section><a target="_blank" href="https://www.tiktok.com/@1it_u">@1it_u</a></section>
+        </blockquote>
+      </div>
+      <div class="tiktok-wrapper">
+        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@1it_u/video/6959893390741753090" data-video-id="6959893390741753090" style="max-width:100%;min-width:100%;border:none;">
+          <section><a target="_blank" href="https://www.tiktok.com/@1it_u">@1it_u</a></section>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="tiktok-cta reveal">
+      <a href="https://www.tiktok.com/@1it_u" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+        Follow on TikTok
+      </a>
+    </div>
+
+    <div class="collage-row reveal">
+      <div class="collage-item">
+        <img src="../collage.png" alt="Aprilskin Spot Erasing Puff Concealer Ad Creative" />
+        <div class="collage-label">
+          <div class="collage-label-title">Aprilskin Ad Creative</div>
+          <div class="collage-label-desc">Concealer campaign I produced. 233% ROAS.</div>
+        </div>
+      </div>
+      <div class="collage-item">
+        <video src="../documentary.mp4" controls preload="metadata" aria-label="Documentary film"></video>
+        <div class="collage-label">
+          <div class="collage-label-title">Documentary Film</div>
+          <div class="collage-label-desc">University project. Long-form storytelling.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -1190,8 +1455,8 @@ footer {
 <section>
   <div class="quiz-section reveal">
     <div class="quiz-box" id="quiz">
-      <div class="quiz-title">Which one is NOT true about me?</div>
-      <div class="quiz-subtitle">Click the lie. Only one is false.</div>
+      <div class="quiz-title">Spot the lie.</div>
+      <div class="quiz-subtitle">Four of these are true. One is made up. Can you tell?</div>
       <div class="quiz-options">
         <div class="quiz-option" onclick="handleQuiz(this, true)">
           <div class="quiz-number">1</div>
@@ -1244,7 +1509,7 @@ footer {
 
 <footer>
   <span>&copy; 2026 Lia Jun</span>
-  <span>Built with care (and good taste)</span>
+  <span>Built with care and good taste</span>
 </footer>
 
 <script>
@@ -1282,16 +1547,17 @@ function handleQuiz(el, isTrue) {
   const result = document.getElementById('quizResult');
   if (!isTrue) {
     el.classList.add('correct');
-    result.innerHTML = "<strong>You got it!</strong> That one was made up. Everything else? All true. Yes, including the Russian hospital.";
+    result.innerHTML = "<strong>Nailed it.</strong> That one's made up. Everything else? All true. Yes, including the Russian hospital.";
   } else {
     el.classList.add('wrong');
     document.querySelectorAll('.quiz-option').forEach(opt => {
       if (opt.getAttribute('onclick').includes('false')) opt.classList.add('correct');
     });
-    result.innerHTML = "<strong>Nope, that one's real!</strong> The lie was #5. Everything else actually happened.";
+    result.innerHTML = "<strong>Nope, that one's real.</strong> The lie was #5. Everything else actually happened.";
   }
   result.classList.add('show');
 }
 </script>
+<script async src="https://www.tiktok.com/embed.js"></script>
 </body>
 </html>
