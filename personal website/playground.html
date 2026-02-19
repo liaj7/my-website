@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lia Jun — Design Playground</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* — Lia's New Palette — */
+  --bg: #FBF7F4;
+  --bg-warm: #FFF5EE;
+  --bg-card: #FFFFFF;
+  --bg-elevated: #F5EDE6;
+
+  --text: #2D2A26;
+  --text-secondary: #6B6560;
+  --text-dim: #A09890;
+
+  --peach: #F4845F;
+  --peach-light: #FFB59A;
+  --peach-glow: #FDDDD2;
+  --peach-soft: #FFF0EB;
+
+  --sage: #7BA68A;
+  --sage-light: #A8CEAF;
+  --sage-soft: #E8F2EA;
+  --sage-dark: #5A8B6A;
+
+  --lavender: #B8A9D4;
+  --coral: #FF8A75;
+
+  /* Company colors (kept) */
+  --apr: #D87EF2;
+  --apr-bg: #FAF0FE;
+  --apr-border: #EDD5F8;
+  --meta-blue: #5B9BF0;
+  --meta-bg: #EDF4FE;
+  --meta-border: #D0E2FB;
+  --madup: #5CC48A;
+  --madup-bg: #ECF8F1;
+  --madup-border: #C5E8D4;
+
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Sora', -apple-system, sans-serif;
+  --mono: 'Space Mono', monospace;
+
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-xs: 6px;
+  --shadow-sm: 0 2px 8px rgba(45,42,38,0.06);
+  --shadow-md: 0 8px 30px rgba(45,42,38,0.08);
+  --shadow-lg: 0 16px 50px rgba(45,42,38,0.1);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--peach-glow); color: var(--text); }
+
+/* — PLAYGROUND BANNER — */
+.playground-banner {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 999;
+  background: linear-gradient(135deg, var(--peach), var(--sage));
+  color: white;
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* — NAV — */
+nav {
+  position: fixed;
+  top: 32px; left: 1.5rem; right: 1.5rem;
+  z-index: 100;
+  padding: 0.85rem 1.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(251,247,244,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(45,42,38,0.06);
+  border-radius: 100px;
+  transition: all 0.3s;
+  box-shadow: var(--shadow-sm);
+}
+nav.scrolled {
+  box-shadow: var(--shadow-md);
+}
+
+.nav-name {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.nav-links { display: flex; gap: 1.75rem; align-items: center; }
+.nav-links a {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-links a:hover { color: var(--peach); }
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0;
+  width: 0; height: 2px;
+  background: var(--peach);
+  border-radius: 2px;
+  transition: width 0.3s;
+}
+.nav-links a:hover::after { width: 100%; }
+
+.nav-cta {
+  background: var(--text);
+  color: var(--bg) !important;
+  padding: 0.45rem 1.1rem;
+  border-radius: 100px;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  transition: all 0.2s !important;
+}
+.nav-cta:hover {
+  background: var(--peach) !important;
+  color: white !important;
+}
+.nav-cta::after { display: none !important; }
+
+/* — HERO — */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 8rem 3rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  opacity: 0.5;
+}
+.hero-bg-shape.peach {
+  width: 500px; height: 500px;
+  background: var(--peach-glow);
+  top: 10%; right: -5%;
+}
+.hero-bg-shape.sage {
+  width: 400px; height: 400px;
+  background: var(--sage-soft);
+  bottom: 5%; left: -5%;
+}
+.hero-bg-shape.lavender {
+  width: 300px; height: 300px;
+  background: #E8E0F5;
+  top: 50%; left: 30%;
+}
+
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-text {
+  opacity: 0;
+  animation: slideUp 0.7s 0.2s forwards;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--sage-soft);
+  color: var(--sage-dark);
+  padding: 0.35rem 0.85rem;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.02em;
+}
+.hero-badge .dot {
+  width: 6px; height: 6px;
+  background: var(--sage);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.hero-greeting {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.6rem, 4.5vw, 3.8rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+}
+.hero h1 .highlight {
+  color: var(--peach);
+  position: relative;
+}
+.hero h1 .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 2px; left: -2px; right: -2px;
+  height: 8px;
+  background: var(--peach-glow);
+  border-radius: 4px;
+  z-index: -1;
+}
+
+.hero-sub {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  max-width: 460px;
+  margin-bottom: 2rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.85rem;
+  align-items: center;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--text);
+  color: var(--bg);
+  padding: 0.75rem 1.5rem;
+  border-radius: 100px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s;
+  border: none;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  background: var(--peach);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(244,132,95,0.25);
+}
+.btn-primary svg { width: 16px; height: 16px; }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 0.75rem 1.25rem;
+  border-radius: 100px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s;
+  border: 1.5px solid rgba(45,42,38,0.12);
+}
+.btn-ghost:hover {
+  border-color: var(--sage);
+  color: var(--sage-dark);
+  background: var(--sage-soft);
+}
+
+.hero-photo-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  opacity: 0;
+  animation: slideUp 0.7s 0.4s forwards;
+}
+
+.hero-photo-wrapper {
+  position: relative;
+  width: 380px;
+  height: 460px;
+}
+
+.hero-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 200px 200px 40px 40px;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+  box-shadow: var(--shadow-lg);
+}
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+}
+
+.hero-photo-bg {
+  position: absolute;
+  inset: -12px;
+  border-radius: 210px 210px 50px 50px;
+  background: linear-gradient(135deg, var(--peach-glow), var(--sage-soft));
+  z-index: 1;
+}
+
+/* Floating elements around photo */
+.float-tag {
+  position: absolute;
+  z-index: 3;
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.85rem;
+  box-shadow: var(--shadow-md);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  animation: floatY 4s ease-in-out infinite;
+}
+.float-tag .emoji { font-size: 1rem; }
+
+.float-tag.top-right {
+  top: 2rem; right: -2.5rem;
+  animation-delay: -0.5s;
+}
+.float-tag.bottom-left {
+  bottom: 3rem; left: -2.5rem;
+  animation-delay: -1.5s;
+}
+.float-tag.bottom-right {
+  bottom: 0.5rem; right: -1.5rem;
+  animation-delay: -2.5s;
+}
+
+/* — METRICS STRIP — */
+.metrics-strip {
+  max-width: 900px;
+  margin: -1rem auto 0;
+  padding: 0 3rem 4rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.metric-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(45,42,38,0.06);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s;
+}
+.metric-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.metric-number {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--peach);
+  line-height: 1.2;
+}
+.metric-desc {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  margin-top: 0.2rem;
+  font-weight: 400;
+}
+
+/* — SECTIONS — */
+section { padding: 5rem 3rem; }
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sage-dark);
+  margin-bottom: 1rem;
+  background: var(--sage-soft);
+  padding: 0.35rem 0.85rem;
+  border-radius: 100px;
+}
+
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 560px;
+  margin-bottom: 2.5rem;
+}
+
+/* — ABOUT — */
+.about { max-width: 900px; margin: 0 auto; }
+
+.about-content {
+  font-size: 1.02rem;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--text-secondary);
+  max-width: 680px;
+}
+.about-content p { margin-bottom: 1rem; }
+.about-content strong { font-weight: 600; color: var(--text); }
+.about-content em {
+  font-style: normal;
+  color: var(--peach);
+  font-weight: 500;
+}
+
+/* — TIMELINE — */
+.timeline {
+  display: flex;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.timeline-card {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid rgba(45,42,38,0.06);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s;
+}
+.timeline-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.timeline-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.timeline-card.apr::before { background: var(--apr); }
+.timeline-card.meta::before { background: var(--meta-blue); }
+.timeline-card.madup::before { background: var(--madup); }
+
+.timeline-year {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  letter-spacing: 0.03em;
+  margin-bottom: 0.5rem;
+}
+.timeline-company {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.15rem;
+}
+.timeline-role {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+/* — WORK — */
+.work { max-width: 1000px; margin: 0 auto; }
+.category-group { margin-bottom: 3.5rem; }
+
+.category-title {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  margin-bottom: 0.3rem;
+}
+.category-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+  margin-bottom: 1.25rem;
+}
+
+/* Company tags */
+.company-tag {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  letter-spacing: 0.04em;
+  border-radius: 100px;
+  margin-bottom: 0.5rem;
+}
+.company-apr { color: var(--apr); background: var(--apr-bg); }
+.company-meta { color: var(--meta-blue); background: var(--meta-bg); }
+.company-madup { color: var(--madup); background: var(--madup-bg); }
+
+/* Case cards */
+.case-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(45,42,38,0.06);
+  border-radius: var(--radius);
+  margin-bottom: 0.85rem;
+  transition: all 0.3s;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+.case-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.case-header {
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+.case-header-left { flex: 1; }
+.case-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+  color: var(--text);
+}
+.case-lesson {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+  line-height: 1.55;
+}
+
+.case-metrics {
+  display: flex;
+  gap: 1.25rem;
+  text-align: right;
+  flex-shrink: 0;
+}
+.metric-val {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--peach);
+  line-height: 1.2;
+}
+.metric-label {
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+}
+
+.case-toggle {
+  width: 30px; height: 30px;
+  border: 1.5px solid rgba(45,42,38,0.1);
+  border-radius: 50%;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  flex-shrink: 0;
+  align-self: center;
+}
+.case-toggle:hover {
+  border-color: var(--peach);
+  background: var(--peach-soft);
+}
+.case-toggle svg {
+  width: 12px; height: 12px;
+  transition: transform 0.3s;
+  stroke: var(--text-dim);
+}
+.case-card.open .case-toggle svg { transform: rotate(45deg); }
+.case-card.open .case-toggle {
+  background: var(--peach-soft);
+  border-color: var(--peach-light);
+}
+
+.case-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.case-body-inner {
+  padding: 0 1.5rem 1.5rem;
+  border-top: 1px solid rgba(45,42,38,0.06);
+}
+.case-section-title {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sage-dark);
+  margin-top: 1.25rem;
+  margin-bottom: 0.6rem;
+}
+.case-body-inner p {
+  font-size: 0.88rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 0.6rem;
+}
+.case-body-inner ul { list-style: none; padding: 0; }
+.case-body-inner ul li {
+  font-size: 0.88rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  padding-left: 1.25rem;
+  position: relative;
+  margin-bottom: 0.3rem;
+}
+.case-body-inner ul li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0.55rem;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--peach-light);
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.6rem;
+}
+.result-item {
+  padding: 0.85rem;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+}
+.result-val {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--peach);
+  line-height: 1.2;
+}
+.result-label {
+  font-size: 0.68rem;
+  color: var(--text-dim);
+  margin-top: 0.2rem;
+}
+
+.case-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--peach);
+  text-decoration: none;
+  margin-top: 0.75rem;
+  transition: gap 0.2s;
+}
+.case-link:hover { gap: 0.65rem; }
+
+/* — CONTENT SECTION — */
+.content-section { max-width: 1000px; margin: 0 auto; }
+
+.content-intro {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  max-width: 560px;
+}
+
+/* — QUIZ — */
+.quiz-section { max-width: 700px; margin: 0 auto; }
+.quiz-box {
+  background: linear-gradient(135deg, var(--peach-soft), var(--sage-soft));
+  border: 1px solid rgba(45,42,38,0.06);
+  border-radius: var(--radius);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+.quiz-title {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  color: var(--text);
+  margin-bottom: 0.3rem;
+}
+.quiz-subtitle {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+}
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.quiz-option {
+  background: var(--bg-card);
+  border: 1.5px solid rgba(45,42,38,0.08);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: left;
+}
+.quiz-option:hover {
+  border-color: var(--peach-light);
+  background: var(--peach-soft);
+  transform: translateX(4px);
+}
+.quiz-option.correct {
+  border-color: var(--sage);
+  background: var(--sage-soft);
+}
+.quiz-option.wrong {
+  border-color: #FF6B6B;
+  background: #FFF0F0;
+}
+.quiz-number {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.quiz-text {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  font-weight: 400;
+}
+.quiz-result {
+  margin-top: 1.25rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+  display: none;
+  line-height: 1.6;
+}
+.quiz-result.show { display: block; }
+.quiz-result strong { color: var(--text); font-weight: 600; }
+
+/* — CONTACT — */
+.contact {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  padding-bottom: 5rem;
+}
+.contact .section-title { margin-bottom: 0.5rem; }
+.contact-sub {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.6rem 1.25rem;
+  border: 1.5px solid rgba(45,42,38,0.1);
+  border-radius: 100px;
+  transition: all 0.2s;
+}
+.contact-link:hover {
+  border-color: var(--peach);
+  color: var(--peach);
+  background: var(--peach-soft);
+}
+.contact-link svg { width: 15px; height: 15px; }
+
+/* — FOOTER — */
+footer {
+  padding: 1.5rem 3rem;
+  border-top: 1px solid rgba(45,42,38,0.06);
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--text-dim);
+}
+
+/* — ANIMATIONS — */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 0.6s, transform 0.6s;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* — RESPONSIVE — */
+@media (max-width: 900px) {
+  .playground-banner { font-size: 0.65rem; padding: 0.4rem; }
+  nav { left: 1rem; right: 1rem; padding: 0.7rem 1.25rem; }
+  .nav-links { gap: 1rem; }
+  .nav-links a { font-size: 0.72rem; }
+  .nav-cta { padding: 0.4rem 0.85rem; }
+
+  .hero { padding: 7rem 1.5rem 3rem; }
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    text-align: center;
+  }
+  .hero-text { order: 2; }
+  .hero-photo-area { order: 1; }
+  .hero-photo-wrapper { width: 280px; height: 340px; }
+  .hero h1 { font-size: 2.2rem; }
+  .hero-sub { max-width: 420px; margin: 0 auto 2rem; }
+  .hero-actions { justify-content: center; }
+  .hero-badge { margin: 0 auto 1.5rem; }
+  .float-tag { display: none; }
+
+  .metrics-strip { grid-template-columns: repeat(2, 1fr); padding: 0 1.5rem 3rem; }
+
+  section { padding: 3.5rem 1.5rem; }
+
+  .timeline { flex-direction: column; gap: 0.75rem; }
+
+  .case-header { flex-wrap: wrap; gap: 0.75rem; }
+  .case-metrics { text-align: left; }
+}
+
+@media (max-width: 600px) {
+  nav { top: 28px; }
+  .hero h1 { font-size: 1.8rem; }
+  .hero-photo-wrapper { width: 240px; height: 290px; }
+  .metrics-strip { gap: 0.65rem; }
+  .metric-card { padding: 1rem; }
+  .metric-number { font-size: 1.3rem; }
+  .results-grid { grid-template-columns: 1fr 1fr; }
+  .case-header { padding: 1rem; }
+  .case-body-inner { padding: 0 1rem 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="playground-banner">DESIGN PLAYGROUND — This won't affect your live site</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-name">Lia Jun</a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#content-section">Content</a>
+    <a href="#contact" class="nav-cta">Say hi</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg-shape peach"></div>
+  <div class="hero-bg-shape sage"></div>
+  <div class="hero-bg-shape lavender"></div>
+
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge"><span class="dot"></span> Open to opportunities</div>
+      <p class="hero-greeting">Hey, I'm Lia.</p>
+      <h1>I find the story your <span class="highlight">product is missing</span>.</h1>
+      <p class="hero-sub">Growth marketer who does the strategy AND the execution. Brand launches, performance campaigns, and content — across the US, Korea, and Southeast Asia.</p>
+      <div class="hero-actions">
+        <a href="#work" class="btn-primary">
+          See my work
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"/></svg>
+        </a>
+        <a href="#about" class="btn-ghost">More about me</a>
+      </div>
+    </div>
+
+    <div class="hero-photo-area">
+      <div class="hero-photo-wrapper">
+        <div class="hero-photo-bg"></div>
+        <div class="hero-photo">
+          <img src="../profile.jpg" alt="Lia Jun" />
+        </div>
+        <div class="float-tag top-right">
+          <span class="emoji">🌏</span> 3 markets, 3 roles
+        </div>
+        <div class="float-tag bottom-left">
+          <span class="emoji">📈</span> $65K launch week
+        </div>
+        <div class="float-tag bottom-right">
+          <span class="emoji">🎬</span> Creator too
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS STRIP -->
+<div class="metrics-strip reveal">
+  <div class="metric-card">
+    <div class="metric-number">3</div>
+    <div class="metric-desc">countries worked in</div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-number">$65K</div>
+    <div class="metric-desc">product launch week</div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-number">213%</div>
+    <div class="metric-desc">ROAS on launch</div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-number">+583%</div>
+    <div class="metric-desc">client portfolio growth</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about reveal">
+    <div class="section-label">About</div>
+    <div class="section-title">The short version.</div>
+    <div class="about-content">
+      <p>I once spent days reading competitor reviews and found an entire customer segment everyone else was ignoring. That insight became the positioning for a product launch that did <strong>$65K in its first week</strong>.</p>
+      <p>That's how I work. I study what real people say, find the angle others miss, then <em>build everything</em> — the positioning, the copy, the creative, the campaign. Not just the strategy deck. The actual thing.</p>
+      <p>Three years. Brand-side at <strong>Aprilskin</strong>, platform-side at <strong>Meta Korea</strong>, agency-side at <strong>Madup</strong>. Every time: new market, new role, figured it out fast.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-card apr">
+        <div class="timeline-year">2021 — 2023</div>
+        <div class="timeline-company">APR Corporation</div>
+        <div class="timeline-role">Brand Manager, US Market</div>
+      </div>
+      <div class="timeline-card meta">
+        <div class="timeline-year">2023 — 2024</div>
+        <div class="timeline-company">Meta Korea</div>
+        <div class="timeline-role">Client Solutions Manager</div>
+      </div>
+      <div class="timeline-card madup">
+        <div class="timeline-year">2025</div>
+        <div class="timeline-company">Madup</div>
+        <div class="timeline-role">Account Manager</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="work">
+    <div class="section-label reveal">Work</div>
+    <div class="section-title reveal">Results, not just resumes.</div>
+    <div class="section-subtitle reveal">Every project started from a gap nobody else noticed.</div>
+
+    <!-- Brand Marketing -->
+    <div class="category-group reveal">
+      <div class="category-title">Brand Marketing</div>
+      <div class="category-desc">Product launches, localization, building brands in new markets.</div>
+
+      <div class="case-card" onclick="toggleCase(this)">
+        <div class="case-header">
+          <div class="case-header-left">
+            <span class="company-tag company-apr">APR Corporation</span>
+            <div class="case-name">US Website Localization</div>
+            <div class="case-lesson">Pushed for a full site overhaul nobody asked for. The US website was a copy of the Korean version — no amount of ad spend would fix that trust gap.</div>
+          </div>
+          <div class="case-metrics">
+            <div><div class="metric-val">+44%</div><div class="metric-label">Page value</div></div>
+          </div>
+          <button class="case-toggle" aria-label="Expand"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg></button>
+        </div>
+        <div class="case-body"><div class="case-body-inner">
+          <div class="case-section-title">The Challenge</div>
+          <p>The US site wasn't just badly translated — it was a full copy of the Korean version. American consumers couldn't connect with it.</p>
+          <div class="case-section-title">What I Did</div>
+          <ul>
+            <li>Benchmarked US competitors (Glossier, The Ordinary, Drunk Elephant)</li>
+            <li>Rewrote product pages for American shoppers: shorter copy, toggle layouts, reviews above fold</li>
+            <li>Directed photoshoots with diverse models to reflect US audience</li>
+            <li>Built article content section from scratch to increase time-on-site</li>
+          </ul>
+          <div class="case-section-title">Results</div>
+          <div class="results-grid">
+            <div class="result-item"><div class="result-val">-9%</div><div class="result-label">Bounce rate</div></div>
+            <div class="result-item"><div class="result-val">+44%</div><div class="result-label">Page value</div></div>
+            <div class="result-item"><div class="result-val">+75%</div><div class="result-label">Scroll depth</div></div>
+          </div>
+        </div></div>
+      </div>
+
+      <div class="case-card" onclick="toggleCase(this)">
+        <div class="case-header">
+          <div class="case-header-left">
+            <span class="company-tag company-apr">APR Corporation</span>
+            <div class="case-name">Cleansing Balm US Launch</div>
+            <div class="case-lesson">Found the gap by reading hundreds of competitor reviews. People with acne-prone skin wanted a cleansing balm — nobody was making one for them.</div>
+          </div>
+          <div class="case-metrics">
+            <div><div class="metric-val">$65K</div><div class="metric-label">Launch week</div></div>
+            <div><div class="metric-val">213%</div><div class="metric-label">ROAS</div></div>
+          </div>
+          <button class="case-toggle" aria-label="Expand"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg></button>
+        </div>
+        <div class="case-body"><div class="case-body-inner">
+          <div class="case-section-title">The Challenge</div>
+          <p>Launch a cleansing balm in the US where a huge segment with acne-prone skin actively avoided oil-based products, assuming they'd cause breakouts.</p>
+          <div class="case-section-title">What I Did</div>
+          <ul>
+            <li>Analyzed competitor reviews on Amazon and Sephora to find the gap</li>
+            <li>Positioned as "the cleansing balm for acne-prone skin" with Carrotene IPMP</li>
+            <li>Timed launch before Halloween (heavy costume makeup = cleansing use case)</li>
+            <li>Seeded to Halloween, drag queen, and extreme makeup influencers</li>
+            <li>Wrote all product page copy and coordinated design assets</li>
+          </ul>
+          <div class="case-section-title">Results</div>
+          <div class="results-grid">
+            <div class="result-item"><div class="result-val">$65K</div><div class="result-label">Launch week revenue</div></div>
+            <div class="result-item"><div class="result-val">213%</div><div class="result-label">ROAS</div></div>
+            <div class="result-item"><div class="result-val">+45%</div><div class="result-label">Above bestseller</div></div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- Performance & Growth -->
+    <div class="category-group reveal">
+      <div class="category-title">Performance & Growth</div>
+      <div class="category-desc">Ad optimization, client acquisition, and scaling across markets.</div>
+
+      <div class="case-card" onclick="toggleCase(this)">
+        <div class="case-header">
+          <div class="case-header-left">
+            <span class="company-tag company-meta">Meta Korea</span>
+            <div class="case-name">Client Acquisition & Ad Solutions</div>
+            <div class="case-lesson">Experienced the full sales cycle. Learned that selling is really about helping.</div>
+          </div>
+          <div class="case-metrics">
+            <div><div class="metric-val">+583%</div><div class="metric-label">Client growth</div></div>
+            <div><div class="metric-val">+59%</div><div class="metric-label">QoQ spend</div></div>
+          </div>
+          <button class="case-toggle" aria-label="Expand"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg></button>
+        </div>
+        <div class="case-body"><div class="case-body-inner">
+          <p>Joined Meta Korea as a Client Solutions Manager. One month in, my senior left for 4 weeks and I managed the portfolio alone.</p>
+          <div class="case-section-title">What I Did</div>
+          <ul>
+            <li>Built prospect pipeline from zero — pitched and onboarded 35 new brands in 2 months</li>
+            <li>A/B tested Reels ads — 80% more effective (CPM -18%, CTR +12%)</li>
+            <li>Found root cause of recurring ad disapprovals, ran compliance seminar for 60 staff</li>
+          </ul>
+          <div class="case-section-title">Results</div>
+          <div class="results-grid">
+            <div class="result-item"><div class="result-val">+583%</div><div class="result-label">Client growth</div></div>
+            <div class="result-item"><div class="result-val">+59%</div><div class="result-label">QoQ ad spend</div></div>
+            <div class="result-item"><div class="result-val">-57%</div><div class="result-label">Ad disapprovals</div></div>
+          </div>
+        </div></div>
+      </div>
+
+      <div class="case-card" onclick="toggleCase(this)">
+        <div class="case-header">
+          <div class="case-header-left">
+            <span class="company-tag company-madup">Madup</span>
+            <div class="case-name">Olive Young SEA Performance Marketing</div>
+            <div class="case-lesson">A/B tested creatives across 3 markets, restructured campaigns to cut waste and scale winners.</div>
+          </div>
+          <div class="case-metrics">
+            <div><div class="metric-val">+53%</div><div class="metric-label">ROAS</div></div>
+            <div><div class="metric-val">+148%</div><div class="metric-label">Purchases</div></div>
+          </div>
+          <button class="case-toggle" aria-label="Expand"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg></button>
+        </div>
+        <div class="case-body"><div class="case-body-inner">
+          <div class="case-section-title">The Challenge</div>
+          <p>Olive Young expanding into SEA — each market had different consumer behaviors, price sensitivities, and content preferences.</p>
+          <div class="case-section-title">What I Did</div>
+          <ul>
+            <li>Managed ad accounts across Meta and TikTok in Singapore, Philippines, and Malaysia</li>
+            <li>A/B tested visual tone (dark vs. pastel) and messaging (discount vs. product-focused)</li>
+            <li>Malaysia catalog ROAS improved from 122% to 1,786% after restructure</li>
+          </ul>
+          <div class="case-section-title">Results (May to June)</div>
+          <div class="results-grid">
+            <div class="result-item"><div class="result-val">+53%</div><div class="result-label">ROAS growth</div></div>
+            <div class="result-item"><div class="result-val">+148%</div><div class="result-label">Purchase growth</div></div>
+            <div class="result-item"><div class="result-val">-36%</div><div class="result-label">Purchase CPA</div></div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section>
+  <div class="quiz-section reveal">
+    <div class="quiz-box" id="quiz">
+      <div class="quiz-title">Which one is NOT true about me?</div>
+      <div class="quiz-subtitle">Click the lie. Only one is false.</div>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="handleQuiz(this, true)">
+          <div class="quiz-number">1</div>
+          <div class="quiz-text">I was school president in high school</div>
+        </div>
+        <div class="quiz-option" onclick="handleQuiz(this, true)">
+          <div class="quiz-number">2</div>
+          <div class="quiz-text">I was stuck in a Russian hospital for a week</div>
+        </div>
+        <div class="quiz-option" onclick="handleQuiz(this, true)">
+          <div class="quiz-number">3</div>
+          <div class="quiz-text">I was stuck in Russia during COVID</div>
+        </div>
+        <div class="quiz-option" onclick="handleQuiz(this, true)">
+          <div class="quiz-number">4</div>
+          <div class="quiz-text">I nearly died from food poisoning on a remote island in Thailand</div>
+        </div>
+        <div class="quiz-option" onclick="handleQuiz(this, false)">
+          <div class="quiz-number">5</div>
+          <div class="quiz-text">I once accidentally joined a flash mob in Tokyo</div>
+        </div>
+      </div>
+      <div class="quiz-result" id="quizResult"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact reveal">
+    <div class="section-label">Contact</div>
+    <div class="section-title">Let's make something happen.</div>
+    <p class="contact-sub">Currently nomadic. Open to remote roles, freelance projects, and interesting conversations.</p>
+    <div class="contact-links">
+      <a href="mailto:liabia927@gmail.com" class="contact-link">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
+        Email
+      </a>
+      <a href="https://linkedin.com/in/mokryeon-jun-b39078207" target="_blank" rel="noopener" class="contact-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://tiktok.com/@1it_u" target="_blank" rel="noopener" class="contact-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+        TikTok
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>&copy; 2026 Lia Jun</span>
+  <span>Built with care (and good taste)</span>
+</footer>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Reveal on scroll
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// Case card toggle
+function toggleCase(card) {
+  const body = card.querySelector('.case-body');
+  if (!body) return;
+  const isOpen = card.classList.contains('open');
+  document.querySelectorAll('.case-card.open').forEach(c => {
+    if (c !== card) { c.classList.remove('open'); c.querySelector('.case-body').style.maxHeight = '0'; }
+  });
+  if (isOpen) { card.classList.remove('open'); body.style.maxHeight = '0'; }
+  else { card.classList.add('open'); body.style.maxHeight = body.scrollHeight + 'px'; }
+}
+
+// Quiz
+let quizAnswered = false;
+function handleQuiz(el, isTrue) {
+  if (quizAnswered) return;
+  quizAnswered = true;
+  const result = document.getElementById('quizResult');
+  if (!isTrue) {
+    el.classList.add('correct');
+    result.innerHTML = "<strong>You got it!</strong> That one was made up. Everything else? All true. Yes, including the Russian hospital.";
+  } else {
+    el.classList.add('wrong');
+    document.querySelectorAll('.quiz-option').forEach(opt => {
+      if (opt.getAttribute('onclick').includes('false')) opt.classList.add('correct');
+    });
+    result.innerHTML = "<strong>Nope, that one's real!</strong> The lie was #5. Everything else actually happened.";
+  }
+  result.classList.add('show');
+}
+</script>
+</body>
+</html>
