@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carrotene Clarifying Serum | APRILSKIN US</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 14px; }
+body {
+  font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  background: #fff;
+  color: #1a1a1a;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+.nav {
+  background: #fff;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 0 14px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-logo {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #111;
+}
+.nav-icons { display: flex; gap: 14px; align-items: center; }
+.nav-icon { font-size: 15px; color: #555; cursor: pointer; }
+
+/* ── PRODUCT IMAGE ── */
+.product-image-area {
+  background: #F7F3F0;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.product-image-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.product-bottle-new {
+  width: 80px;
+  height: 140px;
+  background: linear-gradient(160deg, #fff 20%, #F7EFE8 60%, #E8D8C8 100%);
+  border: 1px solid #E0D0C0;
+  border-radius: 10px 10px 6px 6px;
+  position: relative;
+  box-shadow: 4px 8px 24px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.product-bottle-new::before {
+  content: '';
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 16px;
+  background: #D4C4B0;
+  border-radius: 4px 4px 0 0;
+}
+.bottle-text-new {
+  font-size: 7px;
+  font-weight: 700;
+  color: #8A7060;
+  text-align: center;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+}
+.image-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+}
+.image-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.18);
+}
+.image-dot.active { background: #c07040; width: 14px; border-radius: 3px; }
+
+/* ── PRODUCT INFO ── */
+.product-info {
+  padding: 14px 16px 0;
+}
+.product-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+.product-sub {
+  font-size: 11px;
+  color: #888;
+  margin-bottom: 10px;
+}
+.product-rating-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.stars { color: #f5a623; font-size: 12px; letter-spacing: 1px; }
+.rating-count { font-size: 11px; color: #888; }
+.product-price-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.price { font-size: 18px; font-weight: 700; color: #111; }
+.price-note { font-size: 11px; color: #888; }
+
+.variant-label { font-size: 11px; color: #555; margin-bottom: 6px; font-weight: 600; }
+.variants {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.variant-btn {
+  border: 1.5px solid #D4C0A8;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 11px;
+  color: #444;
+  background: #fff;
+  cursor: pointer;
+}
+.variant-btn.active {
+  border-color: #c07040;
+  color: #c07040;
+  background: #FFF5EE;
+  font-weight: 600;
+}
+.variant-btn.soldout {
+  opacity: 0.45;
+  text-decoration: line-through;
+}
+
+.qty-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.qty-label { font-size: 11px; color: #555; font-weight: 600; }
+.qty-control {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.qty-btn {
+  width: 30px; height: 30px;
+  background: #f8f8f8;
+  border: none;
+  font-size: 16px;
+  color: #555;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.qty-num {
+  width: 34px;
+  text-align: center;
+  font-size: 13px;
+  border-left: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+  line-height: 30px;
+}
+
+.add-to-cart {
+  width: 100%;
+  padding: 13px;
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+.trust-badges {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px 0 14px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9.5px;
+  color: #777;
+}
+.trust-badge-icon { font-size: 11px; }
+
+/* ── TAB BAR ── */
+.tab-bar {
+  display: flex;
+  border-bottom: 1px solid #EBEBEB;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  position: sticky;
+  top: 46px;
+  background: #fff;
+  z-index: 90;
+}
+.tab-bar::-webkit-scrollbar { display: none; }
+.tab-btn {
+  flex-shrink: 0;
+  padding: 11px 14px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #888;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  transition: color 0.15s;
+}
+.tab-btn.active {
+  color: #c07040;
+  border-bottom-color: #c07040;
+}
+
+/* ── TAB PANELS ── */
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ── OVERVIEW ── */
+.overview-section {
+  padding: 20px 16px;
+  border-bottom: 1px solid #f5f5f5;
+}
+.overview-headline {
+  font-size: 13px;
+  font-weight: 700;
+  color: #111;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+.overview-body {
+  font-size: 12.5px;
+  color: #555;
+  line-height: 1.75;
+}
+
+.special-section {
+  padding: 20px 16px;
+  border-bottom: 1px solid #f5f5f5;
+}
+.special-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 14px;
+  letter-spacing: 0.01em;
+}
+.special-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 12px 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+.special-item:last-child { border-bottom: none; }
+.special-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #FFF5EE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+.special-text h4 {
+  font-size: 12px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 3px;
+}
+.special-text p {
+  font-size: 11.5px;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* KEY INGREDIENTS */
+.ingredients-highlight {
+  padding: 20px 16px;
+  border-bottom: 1px solid #f5f5f5;
+}
+.ing-section-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 14px;
+}
+.ing-card {
+  background: #FAFAF8;
+  border: 1px solid #EFEFEC;
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 10px;
+}
+.ing-card:last-child { margin-bottom: 0; }
+.ing-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: #c07040;
+  margin-bottom: 5px;
+}
+.ing-desc {
+  font-size: 11.5px;
+  color: #666;
+  line-height: 1.65;
+}
+
+/* ROUTINE SECTION */
+.routine-section {
+  padding: 20px 16px;
+}
+.routine-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 4px;
+}
+.routine-sub {
+  font-size: 11px;
+  color: #888;
+  margin-bottom: 14px;
+}
+.routine-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.routine-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid #f5f5f5;
+  font-size: 12px;
+}
+.routine-step:last-child { border-bottom: none; }
+.routine-num {
+  width: 20px; height: 20px;
+  background: #c07040;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.routine-name { color: #333; font-weight: 500; }
+.routine-active { color: #c07040; font-weight: 700; }
+
+/* ── INGREDIENTS TAB ── */
+.ing-tab-section {
+  padding: 20px 16px;
+}
+.ing-tab-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 12px;
+}
+.ing-full-list {
+  font-size: 11px;
+  color: #666;
+  line-height: 2;
+  background: #FAFAF8;
+  border: 1px solid #EFEFEC;
+  border-radius: 10px;
+  padding: 14px;
+}
+
+/* ── HOW TO USE ── */
+.howto-tab {
+  padding: 20px 16px;
+}
+.howto-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 16px;
+}
+.howto-step {
+  display: flex;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid #f5f5f5;
+  align-items: flex-start;
+}
+.howto-step:last-child { border-bottom: none; }
+.howto-num {
+  width: 26px; height: 26px;
+  background: #1a1a1a;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.howto-step-text {
+  font-size: 12.5px;
+  color: #444;
+  line-height: 1.65;
+}
+
+/* ── FAQ TAB ── */
+.faq-tab {
+  padding: 20px 16px;
+}
+.faq-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 14px;
+}
+.faq-item {
+  border-bottom: 1px solid #f0f0f0;
+}
+.faq-q {
+  padding: 13px 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: #111;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.faq-q .chevron {
+  font-size: 11px;
+  color: #aaa;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.faq-a {
+  display: none;
+  font-size: 12px;
+  color: #666;
+  line-height: 1.7;
+  padding-bottom: 13px;
+}
+.faq-item.open .faq-a { display: block; }
+.faq-item.open .chevron { transform: rotate(180deg); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-logo">APRILSKIN US</div>
+  <div class="nav-icons">
+    <span class="nav-icon">🔍</span>
+    <span class="nav-icon">👤</span>
+    <span class="nav-icon">🛒</span>
+  </div>
+</div>
+
+<!-- PRODUCT IMAGE -->
+<div class="product-image-area">
+  <div class="product-image-placeholder">
+    <div class="product-bottle-new">
+      <div class="bottle-text-new">APRILSKIN<br>CARROTENE<br>CLARIFYING<br>SERUM</div>
+    </div>
+  </div>
+  <div class="image-dots">
+    <div class="image-dot active"></div>
+    <div class="image-dot"></div>
+    <div class="image-dot"></div>
+    <div class="image-dot"></div>
+    <div class="image-dot"></div>
+  </div>
+</div>
+
+<!-- PRODUCT INFO -->
+<div class="product-info">
+  <div class="product-name">Carrotene Clarifying Serum</div>
+  <div class="product-sub">Niacinamide · Carrot seed oil · Centella Asiatica</div>
+  <div class="product-rating-row">
+    <span class="stars">★★★★★</span>
+    <span class="rating-count">4.8 (1,247 reviews)</span>
+  </div>
+  <div class="product-price-row">
+    <span class="price">$24.00</span>
+    <span class="price-note">Regular price</span>
+  </div>
+
+  <div class="variant-label">SIZE</div>
+  <div class="variants">
+    <div class="variant-btn active">SINGLE — $24.00</div>
+    <div class="variant-btn soldout">2EA + Free Gift — $33.60</div>
+  </div>
+
+  <div class="qty-row">
+    <span class="qty-label">QTY</span>
+    <div class="qty-control">
+      <button class="qty-btn">−</button>
+      <div class="qty-num">1</div>
+      <button class="qty-btn">+</button>
+    </div>
+  </div>
+
+  <button class="add-to-cart">ADD TO CART</button>
+
+  <div class="trust-badges">
+    <div class="trust-badge"><span class="trust-badge-icon">🌱</span> Vegan</div>
+    <div class="trust-badge"><span class="trust-badge-icon">🧪</span> Dermatologist tested</div>
+    <div class="trust-badge"><span class="trust-badge-icon">✓</span> No parabens</div>
+  </div>
+</div>
+
+<!-- TAB BAR -->
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('overview', this)">Overview</button>
+  <button class="tab-btn" onclick="switchTab('ingredients', this)">Ingredients</button>
+  <button class="tab-btn" onclick="switchTab('howto', this)">How to Use</button>
+  <button class="tab-btn" onclick="switchTab('faq', this)">FAQ</button>
+</div>
+
+<!-- ── OVERVIEW ── -->
+<div class="tab-panel active" id="tab-overview">
+
+  <div class="overview-section">
+    <div class="overview-headline">Customer's Choice! No.1 Steady Seller — Carrot Complex 10,001PPM with Centella Asiatica</div>
+    <div class="overview-body">Non-comedogenic serum powered by pro-vitamin A, Beta-carotene, fights off bumps and various skin troubles. Infused with a potent blend of carrot complex 10,001PPM, this serum encapsulates the concentrated soothing energy of carrots in one bottle. Beta-carotene helps control excessive sebum production while improving hydration and texture. Care for your acne-prone and sensitive skin with soothing energy straight from nature.<br><br>Remember, no picking or poking! Let the Carrotene serum handle it for you!</div>
+  </div>
+
+  <div class="special-section">
+    <div class="special-title">Why It's Special</div>
+    <div class="special-item">
+      <div class="special-icon">🌿</div>
+      <div class="special-text">
+        <h4>Suitable for all skin types</h4>
+        <p>Free from artificial fragrance, color, parabens, sulfates, gluten, or alcohol. Vegan Certified and dermatologist-tested — perfect for acne-prone and sensitive skin.</p>
+      </div>
+    </div>
+    <div class="special-item">
+      <div class="special-icon">🥕</div>
+      <div class="special-text">
+        <h4>Intensified Sebum Care</h4>
+        <p>Beta-carotene, a natural ingredient proven to regulate sebum production, ensuring effective sebum control.</p>
+      </div>
+    </div>
+    <div class="special-item">
+      <div class="special-icon">✓</div>
+      <div class="special-text">
+        <h4>Non-Comedogenic</h4>
+        <p>Dermatologist-tested and certified suitable for acne-prone skin, with a lightweight texture that doesn't clog pores.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="ingredients-highlight">
+    <div class="ing-section-title">Key Ingredients</div>
+    <div class="ing-card">
+      <div class="ing-name">Beta-Carotene</div>
+      <div class="ing-desc">Rich in antioxidant properties, beta carotene helps to strengthen the skin barrier by protecting the skin from free radicals. It also helps to calm redness, so you can leave the house with a glowing skin!</div>
+    </div>
+    <div class="ing-card">
+      <div class="ing-name">Niacinamide</div>
+      <div class="ing-desc">Controls abnormal behavior of pores, smoothes skin texture, and raises the overall hydration level of your skin. Also helps fade hyperpigmentation and refines overall skin tone.</div>
+    </div>
+    <div class="ing-card">
+      <div class="ing-name">Centella Asiatica Extract</div>
+      <div class="ing-desc">Helps alleviate skin redness and strengthen the skin barrier.</div>
+    </div>
+  </div>
+
+  <div class="routine-section">
+    <div class="routine-title">Carrotene Routine</div>
+    <div class="routine-sub">Click to view detailed information</div>
+    <div class="routine-steps">
+      <div class="routine-step">
+        <div class="routine-num">1</div>
+        <span class="routine-name">Carrotene IPMP™ Hydromelt Cleansing Balm</span>
+      </div>
+      <div class="routine-step">
+        <div class="routine-num">2</div>
+        <span class="routine-name">Carrotene Clarifying Foam Cleanser</span>
+      </div>
+      <div class="routine-step">
+        <div class="routine-num">3</div>
+        <span class="routine-name">Carrotene Clarifying Vita Pads</span>
+      </div>
+      <div class="routine-step">
+        <div class="routine-num">4</div>
+        <span class="routine-active">Carrotene Clarifying Serum ← You are here</span>
+      </div>
+      <div class="routine-step">
+        <div class="routine-num">5</div>
+        <span class="routine-name">Carrotene Clarifying Cream</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── INGREDIENTS ── -->
+<div class="tab-panel" id="tab-ingredients">
+  <div class="ing-tab-section">
+    <div class="ing-tab-title">Key Ingredients</div>
+    <div class="ing-card">
+      <div class="ing-name">Beta-Carotene</div>
+      <div class="ing-desc">Rich in antioxidant properties, helps strengthen the skin barrier and calm redness.</div>
+    </div>
+    <div class="ing-card">
+      <div class="ing-name">Niacinamide</div>
+      <div class="ing-desc">Controls pore behavior, smoothes texture, raises hydration, and fades hyperpigmentation.</div>
+    </div>
+    <div class="ing-card">
+      <div class="ing-name">Centella Asiatica Extract</div>
+      <div class="ing-desc">Alleviates redness and strengthens the skin barrier.</div>
+    </div>
+    <div class="ing-card">
+      <div class="ing-name">Carrot Seed Oil (10,001PPM)</div>
+      <div class="ing-desc">High-concentration carrot complex that regulates sebum and refines pores.</div>
+    </div>
+
+    <div class="ing-tab-title" style="margin-top:20px;">Full Ingredient List</div>
+    <div class="ing-full-list">
+      Water, Butylene Glycol, Glycerin, 1,2-Hexanediol, Niacinamide, Cetyl Ethylhexanoate, Daucus Carota Sativa (Carrot) Seed Oil, Cetearyl Olivate, Propanediol, Carbomer, Sorbitan Olivate, Tromethamine, Houttuynia Cordata Extract, Ethylhexylglycerin, Adenosine, Hydrolyzed Extensin, Tricholoma Matsutake Extract, Disodium EDTA, Hydrolyzed Cicer Seed Extract, Rhododendron Chrysanthum Leaf Extract, Citrus Aurantium Bergamia (Bergamot) Fruit Oil, Sodium Hyaluronate, Hyaluronic Acid, Hydrolyzed Hyaluronic Acid, Castanea Crenata (Chestnut) Shell Extract, Lavandula Angustifolia (Lavender) Flower Extract, Eucalyptus Globulus Leaf Oil, Pogostemon Cablin Oil, Caprylic/Capric Triglyceride, Melaleuca Alternifolia (Tea Tree) Leaf Oil, Daucus Carota Sativa (Carrot) Root Water, Hydrogenated Lecithin, Polyglyceryl-10 Oleate, Centella Asiatica Extract, Beta-Carotene (CI 75130)
+    </div>
+  </div>
+</div>
+
+<!-- ── HOW TO USE ── -->
+<div class="tab-panel" id="tab-howto">
+  <div class="howto-tab">
+    <div class="howto-title">How to Use</div>
+    <div class="howto-step">
+      <div class="howto-num">1</div>
+      <div class="howto-step-text">Use AM and PM, after toner and cleansing.</div>
+    </div>
+    <div class="howto-step">
+      <div class="howto-num">2</div>
+      <div class="howto-step-text">Pump 1–2 times and gently spread across the face from the center outwards.</div>
+    </div>
+    <div class="howto-step">
+      <div class="howto-num">3</div>
+      <div class="howto-step-text">Apply 2–3 more layers on concerned areas.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FAQ ── -->
+<div class="tab-panel" id="tab-faq">
+  <div class="faq-tab">
+    <div class="faq-title">Frequently Asked Questions</div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        How often should I use this product?
+        <span class="chevron">▾</span>
+      </div>
+      <div class="faq-a">For a start, use it once a day after cleansing so that your skin can get used to the product. After a week or so, use it twice a day in the AM and PM and erase those pesky, sneaky little bumps hiding beneath your skin!</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        I have a certain skin type. Can I still use this product?
+        <span class="chevron">▾</span>
+      </div>
+      <div class="faq-a">Everyone, regardless of gender and skin type can enjoy the goodness of carrots as it is clinically proven safe for acne-prone and sensitive skin. Forget apples, a carrot a day will keep the dermatologist away!</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Does it contain sulfates or artificial fragrances?
+        <span class="chevron">▾</span>
+      </div>
+      <div class="faq-a">Absolutely not! Our product is free of sulfates, parabens, gluten, toxins, and artificial fragrances so you can enjoy all the goodness without worrying about skin irritation!</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function switchTab(tabId, btn) {
+  // hide all panels
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  // show selected
+  document.getElementById('tab-' + tabId).classList.add('active');
+  btn.classList.add('active');
+}
+
+function toggleFaq(el) {
+  const item = el.parentElement;
+  item.classList.toggle('open');
+}
+</script>
+</body>
+</html>
