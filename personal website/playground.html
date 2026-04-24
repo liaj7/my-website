@@ -850,46 +850,122 @@ section { padding: 5rem 3rem; }
 .collage-label-title { font-size: 0.85rem; font-weight: 500; color: #fff; margin-bottom: 0.15rem; }
 .collage-label-desc { font-size: 0.75rem; color: rgba(255,255,255,0.7); font-weight: 300; }
 
-/* Meta case card cycle layout */
-.meta-cycle-layout {
-  display: flex; gap: 2rem; margin: 1.25rem 0;
-  align-items: flex-start;
+/* Meta sales cycle — straight line */
+.sales-cycle-wrap { margin: 1.25rem 0 0; }
+.sales-cycle {
+  display: flex;
+  align-items: center;
 }
-.meta-diagram { flex-shrink: 0; }
-.meta-phases { flex: 1; }
-.cycle-svg { width: 190px; height: 190px; }
-.cycle-node-bg { fill: var(--bg-elevated); stroke: rgba(45,42,38,0.1); stroke-width: 1.5; }
-.cycle-label { font-family: var(--sans); font-size: 10px; font-weight: 600; fill: var(--text); text-anchor: middle; }
-.cycle-sublabel { font-family: var(--sans); font-size: 7.5px; fill: var(--text-dim); text-anchor: middle; }
-.cycle-arrow { fill: none; stroke: rgba(45,42,38,0.15); stroke-width: 1.2; }
-.cycle-arrowhead { fill: var(--text-dim); }
-.phase {
-  display: flex; gap: 0.85rem;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid rgba(45,42,38,0.06);
+.cn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  flex-shrink: 0;
 }
-.phase:last-child { border-bottom: none; }
-.phase-number {
-  width: 26px; height: 26px; border-radius: 50%;
+.cn-ring {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(45,42,38,0.12);
   display: flex; align-items: center; justify-content: center;
-  font-size: 0.7rem; font-weight: 600; flex-shrink: 0;
+  transition: border-color 0.3s;
+  position: relative;
+}
+.cn.active .cn-ring { border-color: var(--meta-blue); }
+.cn-dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: rgba(45,42,38,0.15);
+  transition: background 0.3s;
+}
+.cn.active .cn-dot {
+  background: var(--meta-blue);
+  animation: cn-blink 0.7s ease-in-out infinite;
+}
+@keyframes cn-blink {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.5; }
+}
+.cn-label {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+.cn.active .cn-label { color: var(--meta-blue); }
+
+.cc {
+  flex: 1;
+  position: relative;
+  height: 32px;
+  display: flex;
+  align-items: center;
+}
+.cc-track {
+  position: absolute;
+  left: 0; right: 14px;
+  top: 50%; transform: translateY(-50%);
+  height: 1.5px;
+  background: rgba(45,42,38,0.08);
+}
+.cc-fill {
+  position: absolute;
+  left: 0; top: 50%; transform: translateY(-50%);
+  height: 1.5px;
+  width: 0;
+  background: var(--meta-blue);
+  transition: width 0.9s ease;
+}
+.cc.active .cc-fill { width: calc(100% - 14px); }
+.cc-head {
+  position: absolute;
+  right: 0; top: 50%; transform: translateY(-50%);
+  width: 0; height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 7px solid rgba(45,42,38,0.12);
+  transition: border-left-color 0.3s;
+}
+.cc.active .cc-head { border-left-color: var(--meta-blue); }
+
+/* return arc */
+.cycle-return-svg {
+  width: 100%; height: 18px; display: block;
+  margin-top: -6px;
+}
+
+/* phases grid below */
+.meta-phases {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+.phase {
+  padding: 0.85rem;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-xs);
+  border: 1px solid rgba(45,42,38,0.06);
+}
+.phase-number {
+  width: 22px; height: 22px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.65rem; font-weight: 700; flex-shrink: 0;
+  margin-bottom: 0.5rem;
 }
 .phase-1 .phase-number { background: var(--meta-bg); color: var(--meta-blue); border: 1px solid var(--meta-border); }
 .phase-2 .phase-number { background: var(--madup-bg); color: var(--madup); border: 1px solid var(--madup-border); }
 .phase-3 .phase-number { background: var(--apr-bg); color: var(--apr); border: 1px solid var(--apr-border); }
-.phase-content { flex: 1; }
-.phase-title { font-size: 0.85rem; font-weight: 500; color: var(--text); margin-bottom: 0.15rem; }
-.phase-desc { font-size: 0.8rem; color: var(--text-secondary); font-weight: 300; line-height: 1.55; }
-.lesson-box {
-  background: var(--bg-elevated);
-  border-left: 3px solid var(--meta-blue);
-  padding: 0.85rem 1rem;
-  margin-top: 1rem;
-  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
-}
+.phase-title { font-size: 0.8rem; font-weight: 600; color: var(--text); margin-bottom: 0.3rem; }
+.phase-desc { font-size: 0.75rem; color: var(--text-secondary); font-weight: 300; line-height: 1.55; }
+
+.lesson-box { margin-top: 1rem; }
 .lesson-box p {
-  font-size: 0.85rem; color: var(--text-secondary);
-  line-height: 1.55; margin-bottom: 0; font-style: italic;
+  font-size: 0.875rem; color: var(--text-secondary);
+  line-height: 1.6; margin-bottom: 0; font-style: italic;
 }
 .results-inline {
   display: flex; gap: 1.75rem; margin-top: 1rem;
@@ -1118,8 +1194,7 @@ footer {
   .case-metrics { text-align: left; }
   .tiktok-row { grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
   .collage-row { grid-template-columns: 1fr; }
-  .meta-cycle-layout { flex-direction: column; }
-  .meta-diagram { display: flex; justify-content: center; }
+  .meta-phases { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 600px) {
@@ -1160,10 +1235,9 @@ footer {
 
   <div class="hero-inner">
     <div class="hero-text">
-      <div class="hero-badge"><span class="dot"></span> Open to opportunities</div>
       <p class="hero-greeting">Hey, I'm Lia.</p>
       <h1>No playbook?<br><span class="highlight">I'll build one</span>.</h1>
-      <p class="hero-sub">Brand strategy, performance marketing, content production. Three years of walking into blank slates and turning them into revenue.</p>
+      <p class="hero-sub">Brand growth and go-to-market. Walking into blank slates and turning them into revenue.</p>
       <div class="hero-actions">
         <a href="#work" class="btn-primary">
           See the work
@@ -1200,35 +1274,16 @@ footer {
   </div>
 </section>
 
-<!-- METRICS STRIP -->
-<div class="metrics-strip reveal">
-  <div class="metric-card">
-    <div class="metric-number">10+</div>
-    <div class="metric-desc">product launches, 3 bestsellers</div>
-  </div>
-  <div class="metric-card">
-    <div class="metric-number">6.8x</div>
-    <div class="metric-desc">client base growth in 2 months</div>
-  </div>
-  <div class="metric-card">
-    <div class="metric-number">+59%</div>
-    <div class="metric-desc">ad spend scaled on key account</div>
-  </div>
-  <div class="metric-card">
-    <div class="metric-number">120%</div>
-    <div class="metric-desc">Black Friday target exceeded</div>
-  </div>
-</div>
 
 <!-- ABOUT -->
 <section id="about">
   <div class="about reveal">
     <div class="section-label">About</div>
-    <div class="section-title">What I actually do.</div>
+    <div class="section-title">What I do.</div>
     <div class="about-content">
       <p><strong>My strongest skill is seeing what's not there.</strong> I once spent days reading competitor reviews and found an entire customer segment everyone else ignored. That insight became the positioning for a product launch that did <strong>$65K in its first week</strong>.</p>
-      <p>That's how I work. I study what real people say, find the opportunity others overlook, then build everything to capture it. The positioning. The copy. The creative. The campaign. Not just the strategy deck. <em>The actual work.</em></p>
-      <p>Three years across brand-side at <strong>Aprilskin</strong>, platform-side at <strong>Meta Korea</strong>, agency-side at <strong>Madup</strong>. Every time: no playbook. Sharp instincts did the rest.</p>
+      <p>That's how I work. I find the opportunity others overlook, then build everything to capture it. The positioning. The copy. The creative. The campaign. Not just the strategy deck. <em>The actual work.</em></p>
+      <p>Brand-side at <strong>Aprilskin</strong>, platform-side at <strong>Meta Korea</strong>, agency-side at <strong>Madup</strong>. Every time: no playbook. Sharp instincts did the rest.</p>
     </div>
 
     <div class="timeline">
@@ -1339,6 +1394,9 @@ footer {
             <div class="result-item"><div class="result-val">213%</div><div class="result-label">ROAS</div></div>
             <div class="result-item"><div class="result-val">+45%</div><div class="result-label">Above bestseller</div></div>
           </div>
+          <a href="case-cleansing-balm.html" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1.25rem;font-size:0.8rem;font-weight:600;color:var(--peach);text-decoration:none;letter-spacing:0.03em;">
+            See the full case study →
+          </a>
         </div></div>
       </div>
 
@@ -1371,6 +1429,9 @@ footer {
             <div class="result-item"><div class="result-val">+70%</div><div class="result-label">Email open rate</div></div>
             <div class="result-item"><div class="result-val">$17K</div><div class="result-label">Additional CRM revenue</div></div>
           </div>
+          <a href="case-email.html" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1.25rem;font-size:0.8rem;font-weight:600;color:var(--peach);text-decoration:none;letter-spacing:0.03em;">
+            See the full case study →
+          </a>
         </div></div>
       </div>
     </div>
@@ -1394,46 +1455,51 @@ footer {
         </div>
         <div class="case-body"><div class="case-body-inner">
           <p>Joined Meta Korea as a Client Solutions Manager with minimal onboarding. One month in, my senior left for four weeks. I managed the portfolio alone and experienced every stage of the sales cycle firsthand.</p>
-          <div class="meta-cycle-layout">
-            <div class="meta-diagram">
-              <svg class="cycle-svg" viewBox="0 0 200 200">
-                <path d="M 120 42 C 155 60, 168 100, 150 135" class="cycle-arrow" marker-end="url(#ah)"/>
-                <path d="M 132 152 C 115 175, 82 175, 66 152" class="cycle-arrow" marker-end="url(#ah)"/>
-                <path d="M 50 135 C 32 100, 45 60, 80 42" class="cycle-arrow" marker-end="url(#ah)"/>
-                <defs><marker id="ah" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0 0, 7 2.5, 0 5" class="cycle-arrowhead"/></marker></defs>
-                <rect x="55" y="12" width="90" height="36" rx="8" class="cycle-node-bg"/>
-                <text x="100" y="30" class="cycle-label">Acquire</text>
-                <text x="100" y="42" class="cycle-sublabel">Prospect · Pitch · Close</text>
-                <rect x="108" y="132" width="90" height="36" rx="8" class="cycle-node-bg"/>
-                <text x="153" y="150" class="cycle-label">Optimize</text>
-                <text x="153" y="162" class="cycle-sublabel">Analyze · Test · Improve</text>
-                <rect x="2" y="132" width="90" height="36" rx="8" class="cycle-node-bg"/>
-                <text x="47" y="150" class="cycle-label">Retain</text>
-                <text x="47" y="162" class="cycle-sublabel">Solve · Educate · Grow</text>
-              </svg>
+          <div class="sales-cycle-wrap">
+            <div class="sales-cycle">
+              <div class="cn active" id="cn-1">
+                <div class="cn-ring"><div class="cn-dot"></div></div>
+                <div class="cn-label">Acquire</div>
+              </div>
+              <div class="cc" id="cc-12">
+                <div class="cc-track"></div>
+                <div class="cc-fill"></div>
+                <div class="cc-head"></div>
+              </div>
+              <div class="cn" id="cn-2">
+                <div class="cn-ring"><div class="cn-dot"></div></div>
+                <div class="cn-label">Optimize</div>
+              </div>
+              <div class="cc" id="cc-23">
+                <div class="cc-track"></div>
+                <div class="cc-fill"></div>
+                <div class="cc-head"></div>
+              </div>
+              <div class="cn" id="cn-3">
+                <div class="cn-ring"><div class="cn-dot"></div></div>
+                <div class="cn-label">Retain</div>
+              </div>
             </div>
-            <div class="meta-phases">
-              <div class="phase phase-1">
-                <div class="phase-number">1</div>
-                <div class="phase-content">
-                  <div class="phase-title">Acquire</div>
-                  <div class="phase-desc">Built a prospect pipeline from zero. Co-hosted a seminar with Qoo10, surveyed attendees, ran cold outreach. Pitched and onboarded 35 new brands in 2 months.</div>
-                </div>
-              </div>
-              <div class="phase phase-2">
-                <div class="phase-number">2</div>
-                <div class="phase-content">
-                  <div class="phase-title">Optimize</div>
-                  <div class="phase-desc">Weekly account analysis across 12 D2C brand accounts. Diagnosed underperforming campaign structure, proposed a data-backed restructure. CPM down 15%, CVR up 40%. Recommended Advantage+ Shopping Campaigns and demographic-based bid adjustments.</div>
-                </div>
-              </div>
-              <div class="phase phase-3">
-                <div class="phase-number">3</div>
-                <div class="phase-content">
-                  <div class="phase-title">Retain</div>
-                  <div class="phase-desc">Real-time troubleshooting via KakaoTalk. Found the root cause of recurring ad disapprovals and organized a compliance seminar for 60 staff. Disapprovals dropped 57%.</div>
-                </div>
-              </div>
+            <svg class="cycle-return-svg" viewBox="0 0 400 22" preserveAspectRatio="none">
+              <path d="M 388 4 Q 200 26 12 4" fill="none" stroke="rgba(45,42,38,0.1)" stroke-width="1.2" stroke-dasharray="4 3"/>
+              <polygon points="8,1 8,8 15,4.5" fill="rgba(45,42,38,0.15)"/>
+            </svg>
+          </div>
+          <div class="meta-phases">
+            <div class="phase phase-1">
+              <div class="phase-number">1</div>
+              <div class="phase-title">Acquire</div>
+              <div class="phase-desc">Built a prospect pipeline from zero. Co-hosted a seminar with Qoo10, surveyed attendees, ran cold outreach. Pitched and onboarded 35 new brands in 2 months.</div>
+            </div>
+            <div class="phase phase-2">
+              <div class="phase-number">2</div>
+              <div class="phase-title">Optimize</div>
+              <div class="phase-desc">Weekly account analysis across 12 D2C brand accounts. Restructured underperforming campaigns. CPM down 15%, CVR up 40%.</div>
+            </div>
+            <div class="phase phase-3">
+              <div class="phase-number">3</div>
+              <div class="phase-title">Retain</div>
+              <div class="phase-desc">Real-time troubleshooting via KakaoTalk. Organized a compliance seminar for 60 staff. Ad disapprovals dropped 57%.</div>
             </div>
           </div>
           <div class="lesson-box">
@@ -1603,6 +1669,47 @@ const revealObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// Sales cycle animation
+(function() {
+  const nodes = ['cn-1', 'cn-2', 'cn-3'];
+  const connectors = ['cc-12', 'cc-23', null]; // null = return arc (visual only)
+  let step = 0;
+  let timer;
+
+  function runStep() {
+    // clear all
+    nodes.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove('active');
+    });
+    ['cc-12', 'cc-23'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove('active');
+    });
+
+    // activate current node
+    const node = document.getElementById(nodes[step]);
+    if (node) node.classList.add('active');
+
+    // after a short pause, animate the connector going OUT from this node
+    timer = setTimeout(() => {
+      const ccId = connectors[step];
+      if (ccId) {
+        const cc = document.getElementById(ccId);
+        if (cc) cc.classList.add('active');
+      }
+      // advance to next node after fill transition completes
+      timer = setTimeout(() => {
+        step = (step + 1) % 3;
+        runStep();
+      }, 1000);
+    }, 800);
+  }
+
+  // start once the page is loaded
+  window.addEventListener('load', () => { runStep(); });
+})();
 
 // Case card toggle
 function toggleCase(card) {

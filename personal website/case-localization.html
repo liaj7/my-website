@@ -130,32 +130,7 @@ body {
   font-weight: 600;
 }
 
-/* RESULTS STRIP */
-.results-strip {
-  max-width: 720px;
-  margin: 0 auto 3rem;
-  padding: 0 2rem;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-}
-.result-pill {
-  background: var(--bg-card);
-  border: 1px solid rgba(45,42,38,0.08);
-  border-radius: var(--radius);
-  padding: 1.25rem 1rem;
-  text-align: center;
-  box-shadow: var(--shadow-sm);
-}
-.result-num {
-  font-family: var(--serif);
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: var(--peach);
-  line-height: 1;
-  margin-bottom: 0.3rem;
-}
-.result-lbl { font-size: 0.75rem; color: var(--text-secondary); }
+/* (results moved inline into work-item 01) */
 
 .divider {
   max-width: 720px;
@@ -244,8 +219,20 @@ body {
 .comparison-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  align-items: start;
+  gap: 0.75rem;
+  align-items: stretch;
+  justify-items: center;
+}
+.phone-mockup {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+.phone-mockup .ba-list {
+  flex: 1;
+  width: 100%;
+  max-width: 300px;
 }
 
 /* PHONE MOCKUP */
@@ -460,6 +447,148 @@ body {
   margin-top: 0.05rem;
 }
 
+/* WORK ITEMS */
+.work-items {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.work-item {
+  padding: 3rem 0;
+  border-top: 1px solid rgba(45,42,38,0.07);
+}
+.work-item-inner {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  max-width: 720px;
+}
+.work-num {
+  font-family: var(--serif);
+  font-size: 3rem;
+  font-weight: 700;
+  color: rgba(45,42,38,0.08);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 64px;
+  padding-top: 0.15rem;
+}
+.work-item-content { flex: 1; }
+.work-item-heading {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+}
+.work-item-why {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+
+/* B&A BULLETS */
+.ba-bullets {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.ba-col-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+.ba-col-label.old { color: #C44; }
+.ba-col-label.new { color: var(--sage-dark); }
+.ba-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.ba-list li {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  padding-left: 0.9rem;
+  position: relative;
+}
+.ba-list li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--text-dim);
+}
+
+/* INLINE RESULTS */
+.work-results {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.work-result-pill {
+  background: var(--bg-card);
+  border: 1px solid rgba(45,42,38,0.08);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  min-width: 90px;
+}
+.work-result-num {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--peach);
+  line-height: 1;
+  margin-bottom: 0.2rem;
+}
+.work-result-lbl { font-size: 0.7rem; color: var(--text-secondary); }
+
+/* MODEL STRIP */
+.model-strip-section {
+  max-width: 720px;
+  margin: 0 auto 3rem;
+  padding: 0 2rem;
+}
+.model-strip-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+.marquee-outer {
+  overflow: hidden;
+  border-radius: var(--radius);
+  position: relative;
+}
+.marquee-track {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  animation: marquee-scroll 12s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-img {
+  height: 220px;
+  width: auto;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+  display: block;
+}
+
 /* WHAT CHANGED GRID */
 .shift-section {
   max-width: 720px;
@@ -615,10 +744,15 @@ body {
   .live-site-panel { width: 100%; }
   .changes-grid { grid-template-columns: 1fr; }
 }
+@media (max-width: 900px) {
+  .work-item-inner { flex-direction: column; gap: 0.5rem; }
+  .work-num { font-size: 2rem; width: auto; }
+  .ba-bullets { grid-template-columns: 1fr; }
+}
 @media (max-width: 600px) {
-  .top-bar, .case-hero, .case-section, .comparison-section, .shift-section, .articles-section { padding-left: 1.25rem; padding-right: 1.25rem; }
-  .results-strip { grid-template-columns: 1fr 1fr; padding: 0 1.25rem; }
-  .phone-shell { width: 260px; }
+  .top-bar, .case-hero, .work-items, .comparison-section { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .phone-shell { width: 250px; }
+  .work-results { gap: 0.5rem; }
 }
 </style>
 </head>
@@ -636,9 +770,8 @@ body {
 <!-- HERO -->
 <div class="case-hero">
   <div class="company-tag">APR Corporation</div>
-  <div class="case-eyebrow">Brand Marketing · US Market</div>
   <h1 class="case-title">US Website<br>Localization</h1>
-  <p class="case-hook">The US site was a carbon copy of the Korean version — same layouts, same photography, same dense clinical structure. No amount of ad spend fixes a trust problem. I pushed for a full overhaul nobody asked for.</p>
+  <p class="case-hook">The US site was a carbon copy of the Korean version: same layouts, same photography, same dense clinical structure. No amount of ad spend fixes a trust problem. I pushed for a full overhaul nobody asked for.</p>
   <div class="case-meta-row">
     <div>
       <span class="meta-label">Role</span>
@@ -646,197 +779,180 @@ body {
     </div>
     <div>
       <span class="meta-label">Timeline</span>
-      <span class="meta-value">2021 – 2022</span>
+      <span class="meta-value">2021 – 2023</span>
     </div>
     <div>
       <span class="meta-label">Scope</span>
       <span class="meta-value">Strategy · Copy · Creative direction</span>
     </div>
   </div>
-</div>
-
-<!-- RESULTS -->
-<div class="results-strip">
-  <div class="result-pill">
-    <div class="result-num">+44%</div>
-    <div class="result-lbl">Page value</div>
-  </div>
-  <div class="result-pill">
-    <div class="result-num">−9%</div>
-    <div class="result-lbl">Bounce rate</div>
-  </div>
-  <div class="result-pill">
-    <div class="result-num">+75%</div>
-    <div class="result-lbl">Scroll depth</div>
+  <div class="work-results" style="margin-top:2rem;">
+    <div class="work-result-pill">
+      <div class="work-result-num">+44%</div>
+      <div class="work-result-lbl">Page value</div>
+    </div>
+    <div class="work-result-pill">
+      <div class="work-result-num">-9%</div>
+      <div class="work-result-lbl">Bounce rate</div>
+    </div>
+    <div class="work-result-pill">
+      <div class="work-result-num">+75%</div>
+      <div class="work-result-lbl">Scroll depth</div>
+    </div>
   </div>
 </div>
 
-<div class="divider"></div>
+<!-- WORK ITEMS -->
+<div class="work-items">
 
-<!-- THE PROBLEM -->
-<div class="case-section">
-  <div class="section-label">The Problem</div>
-  <h2 class="section-heading">It wasn't a translation issue. It was a trust issue.</h2>
-  <p class="body-text">Korean e-commerce runs on a specific playbook: numbered feature points, dense clinical data, raw test figures, skin cross-section diagrams. It works in Korea because shoppers expect it. American shoppers don't — they bounce.</p>
-  <p class="body-text">The APR US site had taken that entire Korean structure and dropped it into English. Same layouts. Same photography — Korean models only. The result: high bounce rates, low scroll depth, poor page value. The products were good. The page made them feel like reading a chemistry paper.</p>
-  <div class="insight-box">
-    <p>"Korean consumers trust clinical data. American consumers trust relatability and social proof. Same serum, completely different story needed."</p>
-  </div>
-</div>
-
-<!-- WHAT I DID -->
-<div class="case-section">
-  <div class="section-label">What I Did</div>
-  <h2 class="section-heading">Benchmark, rebuild, prove, scale.</h2>
-  <ul class="case-list">
-    <li>Benchmarked US beauty DTC leaders — Glossier, The Ordinary, Drunk Elephant — to map what American shoppers expected</li>
-    <li>Rewrote all product page copy: shorter, benefit-first, conversational — built for a scan, not a read</li>
-    <li>Moved social proof (reviews) above the fold; pushed clinical data down for those who want it</li>
-    <li>Directed photoshoots with diverse US models to replace Korean-model-only photography</li>
-    <li>Built an article content section from scratch to increase time-on-site and support SEO</li>
-    <li>Started with highest-traffic pages, proved results with data, then got sign-off to scale across the full site</li>
-  </ul>
-</div>
-
-<div class="divider"></div>
-
-<!-- COMPARISON -->
-<div class="comparison-section">
-  <div class="comparison-header">
-    <div class="section-label">Before vs. After</div>
-    <h2 class="section-heading">Same product. Different story.</h2>
-    <p class="comparison-intro">Left: the original Korean-style product page translated into English — dense clinical data, numbered points, raw test figures. Right: the redesigned US page — benefit-first, conversational, built for American shoppers.</p>
-  </div>
-
-  <div class="comparison-wrapper">
-
-    <!-- LEFT: PHONE MOCKUP WITH SCREENSHOTS -->
-    <div class="phone-mockup">
-      <div class="phone-label">
-        <span class="badge before">BEFORE</span>
-        <span class="label-sub">Original Korean-style · 2021</span>
+  <!-- 01 WEBSITE STRUCTURE -->
+  <div class="work-item">
+    <div class="work-item-inner">
+      <div class="work-num">01</div>
+      <div class="work-item-content">
+        <h2 class="work-item-heading">Website Structure Renewal</h2>
+        <p class="work-item-why">The US site was a direct copy of the Korean version: same numbered clinical structure, dense data blocks, Korean-only photography. American shoppers couldn't trust it. Started with the highest-traffic pages, proved results, then scaled across the full site.</p>
       </div>
-      <div class="phone-shell">
-        <div class="phone-notch">
-          <div class="notch-camera"></div>
-          <div class="notch-speaker"></div>
-        </div>
-        <div class="phone-screen">
-          <div class="phone-scroll">
-            <img src="case-assets/carrot serum 1.png" alt="">
-            <img src="case-assets/carrot serum 2.png" alt="">
-            <img src="case-assets/carrot serum 3.png" alt="">
-            <img src="case-assets/carrot serum 21.png" alt="">
-            <img src="case-assets/carrot serum 16.png" alt="">
-            <img src="case-assets/carrot serum 17.png" alt="">
-            <img src="case-assets/carrot serum 18.png" alt="">
-            <img src="case-assets/carrot serum 4.png" alt="">
-            <img src="case-assets/carrot serum 5.png" alt="">
-            <img src="case-assets/carrot serum 6.png" alt="">
-            <img src="case-assets/carrot serum 7.png" alt="">
-            <img src="case-assets/carrot serum 8.png" alt="">
-            <img src="case-assets/carrot serum 9.png" alt="">
-            <img src="case-assets/carrot serum 10.png" alt="">
-            <img src="case-assets/carrot serum 11.png" alt="">
-            <img src="case-assets/carrot serum 12.png" alt="">
-            <img src="case-assets/carrot serum 13.png" alt="">
-            <img src="case-assets/carrot serum 14.png" alt="">
-            <img src="case-assets/carrot serum 15.png" alt="">
-            <img src="case-assets/carrot serum 20.png" alt="">
+    </div>
+
+    <!-- PHONES with bullets above each -->
+    <div class="comparison-section" style="padding-top:1.5rem;">
+      <div class="comparison-wrapper">
+
+        <div class="phone-mockup">
+          <div class="phone-label">
+            <span class="badge before">BEFORE</span>
+            <span class="label-sub">Korean-style · 2021</span>
+          </div>
+          <ul class="ba-list" style="margin-bottom:1.25rem;">
+            <li>Long product descriptions with clinical data and experiment results</li>
+            <li>Aesthetic product imagery, polished but impersonal</li>
+            <li>Copy full of marketing phrases, not genuinely informative</li>
+            <li>No reviews visible above fold</li>
+          </ul>
+          <div class="phone-shell">
+            <div class="phone-notch"><div class="notch-camera"></div><div class="notch-speaker"></div></div>
+            <div class="phone-screen">
+              <div class="phone-scroll">
+                <img src="case-assets/carrot serum 1.png" alt="">
+                <img src="case-assets/carrot serum 2.png" alt="">
+                <img src="case-assets/carrot serum 3.png" alt="">
+                <img src="case-assets/carrot serum 21.png" alt="">
+                <img src="case-assets/carrot serum 16.png" alt="">
+                <img src="case-assets/carrot serum 17.png" alt="">
+                <img src="case-assets/carrot serum 18.png" alt="">
+                <img src="case-assets/carrot serum 4.png" alt="">
+                <img src="case-assets/carrot serum 5.png" alt="">
+                <img src="case-assets/carrot serum 6.png" alt="">
+                <img src="case-assets/carrot serum 7.png" alt="">
+                <img src="case-assets/carrot serum 8.png" alt="">
+                <img src="case-assets/carrot serum 9.png" alt="">
+                <img src="case-assets/carrot serum 10.png" alt="">
+                <img src="case-assets/carrot serum 11.png" alt="">
+                <img src="case-assets/carrot serum 12.png" alt="">
+                <img src="case-assets/carrot serum 13.png" alt="">
+                <img src="case-assets/carrot serum 14.png" alt="">
+                <img src="case-assets/carrot serum 15.png" alt="">
+                <img src="case-assets/carrot serum 20.png" alt="">
+              </div>
+            </div>
+            <div class="phone-home-bar"></div>
           </div>
         </div>
-        <div class="phone-home-bar"></div>
-      </div>
-    </div>
 
-    <!-- RIGHT: REDESIGNED US PAGE PHONE MOCKUP -->
-    <div class="phone-mockup">
-      <div class="phone-label">
-        <span class="badge after">AFTER</span>
-        <span class="label-sub">Redesigned US page · 2022</span>
-      </div>
-      <div class="phone-shell">
-        <div class="phone-notch">
-          <div class="notch-camera"></div>
-          <div class="notch-speaker"></div>
-        </div>
-        <div class="phone-screen">
-          <div class="phone-scroll">
-            <img src="case-assets/new 1.png" alt="">
-            <img src="case-assets/new 2.png" alt="">
-            <img src="case-assets/new 3.png" alt="">
-            <img src="case-assets/new 4.png" alt="">
-            <img src="case-assets/new 5.png" alt="">
+        <div class="phone-mockup">
+          <div class="phone-label">
+            <span class="badge after">AFTER</span>
+            <span class="label-sub">Redesigned US · 2022</span>
+          </div>
+          <ul class="ba-list" style="margin-bottom:1.25rem;">
+            <li>Direct, simple copy: what it is, who it's for</li>
+            <li>Reviews above the fold</li>
+            <li>Ingredient details collapsed by default, expandable if curious</li>
+            <li>Full ingredient list one click away</li>
+          </ul>
+          <div class="phone-shell">
+            <div class="phone-notch"><div class="notch-camera"></div><div class="notch-speaker"></div></div>
+            <div class="phone-screen">
+              <div class="phone-scroll">
+                <img src="case-assets/new 1.png" alt="">
+                <img src="case-assets/new 2.png" alt="">
+                <img src="case-assets/new 3.png" alt="">
+                <img src="case-assets/new 4.png" alt="">
+                <img src="case-assets/new 5.png" alt="">
+              </div>
+            </div>
+            <div class="phone-home-bar"></div>
           </div>
         </div>
-        <div class="phone-home-bar"></div>
+
       </div>
-      <a href="https://aprilskin.us/products/carrot-blemish-serum" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:0.85rem;font-size:0.78rem;font-weight:600;color:var(--sage-dark);text-decoration:none;letter-spacing:0.03em;">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="12" height="12"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
-        View live site →
-      </a>
-    </div>
+      <div style="text-align:right;margin-top:0.85rem;padding:0 0.375rem;">
+        <a href="https://aprilskin.us/products/carrot-blemish-serum" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.78rem;font-weight:600;color:var(--sage-dark);text-decoration:none;">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="12" height="12"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+          View live site →
+        </a>
+      </div>
 
-  </div>
-</div>
-
-<!-- THE SHIFT -->
-<div class="shift-section">
-  <div class="section-label">The Shift</div>
-  <h2 class="section-heading">What actually changed — and why.</h2>
-  <div class="changes-grid">
-    <div class="change-card">
-      <div class="change-label old">Before — Korean conventions</div>
-      <ul>
-        <li>Numbered "Point 1 / 2 / 3" structure</li>
-        <li>Raw clinical numbers up front (137,064 → 122,909)</li>
-        <li>Skin mechanism diagrams</li>
-        <li>Feature-first, dense copy blocks</li>
-        <li>Korean model photography only</li>
-        <li>No social proof visible above fold</li>
-      </ul>
-    </div>
-    <div class="change-card">
-      <div class="change-label new">After — US conventions</div>
-      <ul>
-        <li>Benefit-first: who it's for, what it does</li>
-        <li>Conversational, brand-voice copy</li>
-        <li>Reviews above the fold</li>
-        <li>Ingredient cards in plain language</li>
-        <li>Diverse US model photography</li>
-        <li>Generous whitespace — built for scroll</li>
-      </ul>
     </div>
   </div>
-</div>
 
-<!-- ARTICLES -->
-<div class="articles-section">
-  <div class="divider" style="max-width:100%;padding:0;margin-bottom:2.5rem;"></div>
-  <div class="section-label">Articles</div>
-  <h2 class="section-heading">I also wrote for the brand.</h2>
-  <p class="articles-context">APR's US site had no editorial content when I joined. I built the Aprilskin Edits content hub from zero and wrote two of the articles — each mapped to a real skin concern the Carrotene line addresses, designed to increase time-on-site and support organic search.</p>
-
-  <div class="articles-grid">
-    <a href="https://aprilskin.us/blogs/news/cleansing-the-right-way" target="_blank" rel="noopener" class="article-card">
-      <img src="https://aprilskin.us/cdn/shop/articles/page_img_7.jpg?v=1675227268&width=600" alt="Cleansing, the Right Way" class="article-thumb">
-      <div class="article-body">
-        <div class="article-tag">Routine</div>
-        <div class="article-title">Cleansing, the Right Way</div>
-        <div class="article-desc">How Carrotene works in your night cleansing routine — for acne-prone skin</div>
-        <div class="article-link-label">Read article <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="11" height="11"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></div>
+  <!-- 02 ARTICLE -->
+  <div class="work-item">
+    <div class="work-item-inner">
+      <div class="work-num">02</div>
+      <div class="work-item-content">
+        <h2 class="work-item-heading">Aprilskin Edits</h2>
+        <p class="work-item-why">I restarted the article section that had gone dormant and created a dedicated editorial section called Aprilskin Edits. Built the structure from scratch, added it to the nav bar, and wrote two of the articles myself. Designed to keep visitors on the site longer and support organic search.</p>
+        <div class="articles-grid" style="margin-top:1.25rem;">
+          <a href="https://aprilskin.us/blogs/news/cleansing-the-right-way" target="_blank" rel="noopener" class="article-card">
+            <img src="https://aprilskin.us/cdn/shop/articles/page_img_7.jpg?v=1675227268&width=600" alt="Cleansing, the Right Way" class="article-thumb">
+            <div class="article-body">
+              <div class="article-tag">Routine</div>
+              <div class="article-title">Cleansing, the Right Way</div>
+              <div class="article-desc">How Carrotene works in your night cleansing routine</div>
+              <div class="article-link-label">Read article <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="11" height="11"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></div>
+            </div>
+          </a>
+          <a href="https://aprilskin.us/blogs/aprilskin/is-collagen-skincare-sus" target="_blank" rel="noopener" class="article-card">
+            <img src="https://aprilskin.us/cdn/shop/articles/US_AP_blogTN_collagen.jpg?v=1642483879&width=600" alt="Is Collagen Skincare SUS?" class="article-thumb">
+            <div class="article-body">
+              <div class="article-tag">Ingredient</div>
+              <div class="article-title">Is Collagen Skincare SUS?</div>
+              <div class="article-desc">The purple elixir: what nano-collagen actually does</div>
+              <div class="article-link-label">Read article <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="11" height="11"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></div>
+            </div>
+          </a>
+        </div>
       </div>
-    </a>
-    <a href="https://aprilskin.us/blogs/aprilskin/is-collagen-skincare-sus" target="_blank" rel="noopener" class="article-card">
-      <img src="https://aprilskin.us/cdn/shop/articles/US_AP_blogTN_collagen.jpg?v=1642483879&width=600" alt="Is Collagen Skincare SUS?" class="article-thumb">
-      <div class="article-body">
-        <div class="article-tag">Ingredient</div>
-        <div class="article-title">Is Collagen Skincare SUS?</div>
-        <div class="article-desc">The purple elixir — what nano-collagen actually does to your skin</div>
-        <div class="article-link-label">Read article <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="11" height="11"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></div>
-      </div>
-    </a>
+    </div>
   </div>
+
+  <!-- 03 DIRECTED VISUALS -->
+  <div class="work-item" style="padding-bottom:4rem;">
+    <div class="work-item-inner">
+      <div class="work-num">03</div>
+      <div class="work-item-content">
+        <h2 class="work-item-heading">Directed Visuals</h2>
+        <p class="work-item-why">The original site used only Korean and white model photography. I directed new photoshoots to reflect who actually buys the product, and to align with the brand's values around diversity, inclusivity, and body positivity.</p>
+      </div>
+    </div>
+    <div class="marquee-outer" style="margin-top:1.5rem;">
+      <div class="marquee-track">
+        <img src="case-assets/model-shoot-1.png" alt="APR US diverse model" class="marquee-img">
+        <img src="case-assets/model-shoot-2.png" alt="APR US diverse model" class="marquee-img">
+        <img src="case-assets/model-shoot-3.png" alt="APR US diverse model" class="marquee-img">
+        <img src="case-assets/model-shoot-4.png" alt="APR US diverse model" class="marquee-img">
+        <img src="case-assets/model-shoot-5.png" alt="APR US diverse model" class="marquee-img">
+        <img src="case-assets/model-shoot-1.png" alt="" class="marquee-img" aria-hidden="true">
+        <img src="case-assets/model-shoot-2.png" alt="" class="marquee-img" aria-hidden="true">
+        <img src="case-assets/model-shoot-3.png" alt="" class="marquee-img" aria-hidden="true">
+        <img src="case-assets/model-shoot-4.png" alt="" class="marquee-img" aria-hidden="true">
+        <img src="case-assets/model-shoot-5.png" alt="" class="marquee-img" aria-hidden="true">
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <!-- FOOTER NAV -->

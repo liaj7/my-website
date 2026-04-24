@@ -39,56 +39,35 @@ body {
 .nav-icons { display: flex; gap: 14px; align-items: center; }
 .nav-icon { font-size: 15px; color: #555; cursor: pointer; }
 
-/* ── PRODUCT IMAGE ── */
+/* ── PRODUCT IMAGE GALLERY ── */
 .product-image-area {
   background: #F7F3F0;
-  aspect-ratio: 1 / 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: relative;
   overflow: hidden;
 }
-.product-image-placeholder {
+.gallery-track {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
 }
-.product-bottle-new {
-  width: 80px;
-  height: 140px;
-  background: linear-gradient(160deg, #fff 20%, #F7EFE8 60%, #E8D8C8 100%);
-  border: 1px solid #E0D0C0;
-  border-radius: 10px 10px 6px 6px;
-  position: relative;
-  box-shadow: 4px 8px 24px rgba(0,0,0,0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.gallery-track::-webkit-scrollbar { display: none; }
+.gallery-slide {
+  flex-shrink: 0;
+  width: 100%;
+  scroll-snap-align: start;
 }
-.product-bottle-new::before {
-  content: '';
-  position: absolute;
-  top: -14px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 28px;
-  height: 16px;
-  background: #D4C4B0;
-  border-radius: 4px 4px 0 0;
-}
-.bottle-text-new {
-  font-size: 7px;
-  font-weight: 700;
-  color: #8A7060;
-  text-align: center;
-  letter-spacing: 0.04em;
-  line-height: 1.6;
+.gallery-slide img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
 }
 .image-dots {
   position: absolute;
-  bottom: 12px;
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -97,7 +76,7 @@ body {
 .image-dot {
   width: 5px; height: 5px;
   border-radius: 50%;
-  background: rgba(0,0,0,0.18);
+  background: rgba(0,0,0,0.25);
 }
 .image-dot.active { background: #c07040; width: 14px; border-radius: 3px; }
 
@@ -498,15 +477,23 @@ body {
   </div>
 </div>
 
-<!-- PRODUCT IMAGE -->
+<!-- PRODUCT IMAGE GALLERY -->
 <div class="product-image-area">
-  <div class="product-image-placeholder">
-    <div class="product-bottle-new">
-      <div class="bottle-text-new">APRILSKIN<br>CARROTENE<br>CLARIFYING<br>SERUM</div>
-    </div>
+  <div class="gallery-track" id="gallery">
+    <div class="gallery-slide"><img src="https://aprilskin.us/cdn/shop/files/US_AP_cassandra_TN.jpg?v=1719295252" alt="Carrotene Clarifying Serum"></div>
+    <div class="gallery-slide"><img src="https://aprilskin.us/cdn/shop/files/BNA_1.5_1.jpg?v=1719304701" alt="Carrotene Clarifying Serum"></div>
+    <div class="gallery-slide"><img src="https://aprilskin.us/cdn/shop/files/US_AP_Carrot_serum_th_240409_2_128a58dd-2b6f-49d5-9085-b982c13edd83.jpg?v=1719304701" alt="Carrotene Clarifying Serum"></div>
+    <div class="gallery-slide"><img src="https://aprilskin.us/cdn/shop/files/US_AP_Carrot_serum_th_240409_3.jpg?v=1719304701" alt="Carrotene Clarifying Serum"></div>
+    <div class="gallery-slide"><img src="https://aprilskin.us/cdn/shop/files/US_AP_Carrot_serum_th_240409_1.jpg?v=1719304701" alt="Carrotene Clarifying Serum"></div>
+    <div class="gallery-slide"><img src="https://aprilskin.us/cdn/shop/files/CarroteneClarifyingSerum_TN5.png?v=1719304705" alt="Carrotene Clarifying Serum"></div>
+    <div class="gallery-slide"><img src="https://aprilskin.us/cdn/shop/files/CarroteneClarifyingSerum_TN4.png?v=1719304705" alt="Carrotene Clarifying Serum"></div>
+    <div class="gallery-slide"><img src="https://aprilskin.us/cdn/shop/files/CarroteneClarifyingSerum_TN2.png?v=1719304705" alt="Carrotene Clarifying Serum"></div>
   </div>
-  <div class="image-dots">
+  <div class="image-dots" id="dots">
     <div class="image-dot active"></div>
+    <div class="image-dot"></div>
+    <div class="image-dot"></div>
+    <div class="image-dot"></div>
     <div class="image-dot"></div>
     <div class="image-dot"></div>
     <div class="image-dot"></div>
@@ -717,6 +704,15 @@ body {
 </div>
 
 <script>
+const gallery = document.getElementById('gallery');
+const dots = document.querySelectorAll('#dots .image-dot');
+if (gallery) {
+  gallery.addEventListener('scroll', () => {
+    const i = Math.round(gallery.scrollLeft / gallery.offsetWidth);
+    dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
+  });
+}
+
 function switchTab(tabId, btn) {
   // hide all panels
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));

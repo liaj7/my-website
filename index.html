@@ -82,49 +82,78 @@ nav.scrolled { border-bottom-color: var(--border); }
   min-height: 100vh;
   display: flex;
   align-items: center;
+  justify-content: center;
   overflow: hidden;
 }
 
-.hero-image {
+.hero-orb {
   position: absolute;
-  top: 0; right: 0; bottom: 0;
-  width: 55%;
-  background: url('profile.jpg') center 15% / cover no-repeat;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,149,107,0.35) 0%, rgba(201,149,107,0.15) 40%, rgba(201,149,107,0) 70%);
+  filter: blur(70px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: orbPulse 6s ease-in-out infinite;
+  pointer-events: none;
 }
 
-.hero-overlay {
+.hero-particles {
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background:
-    linear-gradient(to bottom, rgba(11,11,11,0) 50%, var(--bg) 100%),
-    linear-gradient(to right, var(--bg) 28%, rgba(11,11,11,0.85) 42%, rgba(11,11,11,0.45) 60%, rgba(11,11,11,0.2) 80%, rgba(11,11,11,0.15) 100%);
-  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
 }
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0;
+  animation: particleDrift 12s ease-in-out infinite;
+}
+.particle:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; animation-duration: 14s; }
+.particle:nth-child(2) { top: 60%; left: 80%; animation-delay: -2s; animation-duration: 11s; }
+.particle:nth-child(3) { top: 35%; left: 65%; animation-delay: -4s; animation-duration: 13s; width: 3px; height: 3px; }
+.particle:nth-child(4) { top: 75%; left: 25%; animation-delay: -1s; animation-duration: 15s; }
+.particle:nth-child(5) { top: 10%; left: 50%; animation-delay: -6s; animation-duration: 12s; width: 5px; height: 5px; }
+.particle:nth-child(6) { top: 85%; left: 60%; animation-delay: -3s; animation-duration: 10s; }
+.particle:nth-child(7) { top: 45%; left: 10%; animation-delay: -5s; animation-duration: 16s; width: 3px; height: 3px; }
+.particle:nth-child(8) { top: 25%; left: 85%; animation-delay: -7s; animation-duration: 13s; }
+.particle:nth-child(9) { top: 55%; left: 40%; animation-delay: -2.5s; animation-duration: 11s; width: 5px; height: 5px; }
+.particle:nth-child(10) { top: 80%; left: 45%; animation-delay: -8s; animation-duration: 14s; }
+.particle:nth-child(11) { top: 15%; left: 30%; animation-delay: -4.5s; animation-duration: 12s; }
+.particle:nth-child(12) { top: 65%; left: 70%; animation-delay: -6.5s; animation-duration: 15s; width: 3px; height: 3px; }
 
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 580px;
+  max-width: 700px;
   padding: 10rem 3rem 6rem;
+  text-align: center;
 }
 
 .hero-name {
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 1.5rem;
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 0.25rem;
   opacity: 0;
   animation: fadeUp 0.6s 0.2s forwards;
 }
 
 .hero h1 {
   font-family: var(--serif);
-  font-size: clamp(2.8rem, 5vw, 4.2rem);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: var(--text);
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--accent);
   margin-bottom: 1.5rem;
   opacity: 0;
   animation: fadeUp 0.6s 0.4s forwards;
@@ -136,7 +165,9 @@ nav.scrolled { border-bottom-color: var(--border); }
   color: var(--text-secondary);
   line-height: 1.7;
   margin-bottom: 2.5rem;
-  max-width: 460px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
   opacity: 0;
   animation: fadeUp 0.6s 0.6s forwards;
 }
@@ -156,6 +187,60 @@ nav.scrolled { border-bottom-color: var(--border); }
 }
 .hero-cta:hover { gap: 0.85rem; }
 .hero-cta svg { width: 16px; height: 16px; }
+
+.hero-scroll {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  animation: fadeIn 0.8s 1.2s forwards;
+}
+.hero-scroll span {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.hero-scroll-line {
+  width: 1px;
+  height: 40px;
+  background: var(--accent);
+  animation: scrollLine 2s ease-in-out infinite;
+  transform-origin: top;
+}
+
+/* ─── SOCIAL RAIL ─── */
+.social-rail {
+  position: fixed;
+  left: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  z-index: 50;
+}
+.social-rail::before,
+.social-rail::after {
+  content: '';
+  width: 1px;
+  height: 40px;
+  background: var(--border);
+}
+.social-rail a {
+  color: var(--text-dim);
+  transition: color 0.2s;
+  display: flex;
+}
+.social-rail a:hover { color: var(--accent); }
+.social-rail a svg { width: 16px; height: 16px; }
 
 /* ─── SECTIONS ─── */
 section { padding: 6rem 3rem; }
@@ -181,18 +266,45 @@ section { padding: 6rem 3rem; }
 }
 
 /* ─── ABOUT ─── */
-.about { max-width: 860px; margin: 0 auto; }
+.about { max-width: 900px; margin: 0 auto; }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 3rem;
+  align-items: start;
+}
 
 .about-content {
   font-size: 1rem;
   font-weight: 300;
   line-height: 1.85;
   color: var(--text-secondary);
-  max-width: 640px;
 }
 .about-content p { margin-bottom: 1rem; }
 .about-content strong { font-weight: 500; color: var(--text); }
 .about-content em { font-style: italic; color: var(--accent-light); }
+
+.about-photo-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
+.about-photo {
+  max-width: 340px;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  clip-path: url(#blob-clip);
+  overflow: hidden;
+}
+
+.about-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
 
 .about-tagline {
   font-family: var(--serif);
@@ -213,7 +325,7 @@ section { padding: 6rem 3rem; }
 .timeline::before {
   content: '';
   position: absolute;
-  top: 28px; left: 0; right: 0;
+  top: 5px; left: 0; right: 0;
   height: 2px;
   background: var(--border);
 }
@@ -221,10 +333,10 @@ section { padding: 6rem 3rem; }
   flex: 1;
   min-width: 160px;
   position: relative;
-  padding-top: 48px;
+  padding-top: 28px;
 }
 .timeline-dot {
-  position: absolute; top: 22px; left: 0;
+  position: absolute; top: 0; left: 0;
   width: 12px; height: 12px;
   border-radius: 50%;
   border: 2px solid var(--border);
@@ -233,17 +345,33 @@ section { padding: 6rem 3rem; }
 .timeline-item.apr .timeline-dot { border-color: var(--apr); background: var(--apr); }
 .timeline-item.meta .timeline-dot { border-color: var(--meta-blue); background: var(--meta-blue); }
 .timeline-item.madup .timeline-dot { border-color: var(--madup); background: var(--madup); }
-
+.timeline-logo {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.timeline-logo img {
+  max-height: 24px;
+  max-width: 80px;
+  object-fit: contain;
+}
 .timeline-year {
   font-family: var(--mono);
   font-size: 0.65rem;
   color: var(--text-dim);
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.25rem;
   letter-spacing: 0.05em;
 }
 .timeline-company {
   font-size: 0.95rem; font-weight: 500;
   color: var(--text); margin-bottom: 0.1rem;
+}
+.timeline-desc {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  line-height: 1.4;
+  margin-bottom: 0.2rem;
 }
 .timeline-role {
   font-size: 0.8rem;
@@ -667,6 +795,20 @@ footer {
   from { opacity: 0; }
   to { opacity: 1; }
 }
+@keyframes orbPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.7; }
+}
+@keyframes particleDrift {
+  0%, 100% { opacity: 0; transform: translate(0, 0); }
+  15% { opacity: 0.4; }
+  50% { opacity: 0.6; transform: translate(30px, -20px); }
+  85% { opacity: 0.4; }
+}
+@keyframes scrollLine {
+  0%, 100% { transform: scaleY(0); }
+  50% { transform: scaleY(1); }
+}
 .reveal {
   opacity: 0; transform: translateY(25px);
   transition: opacity 0.6s, transform 0.6s;
@@ -679,25 +821,37 @@ footer {
   .nav-links { gap: 1.25rem; }
   .nav-links a { font-size: 0.7rem; }
 
-  .hero-image {
-    width: 100%; height: 55%;
-    top: 0; left: 0; right: 0; bottom: auto;
-    background-position: center 20%;
+  .hero-orb { width: 350px; height: 350px; }
+  .hero-content { padding: 8rem 1.5rem 5rem; max-width: none; }
+  .hero-name { font-size: 1.8rem; }
+  .hero h1 { font-size: 2.4rem; }
+  .hero-sub { max-width: 420px; }
+
+  .social-rail {
+    position: fixed;
+    top: auto;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: row;
+    gap: 1.5rem;
   }
-  .hero-overlay {
-    background:
-      linear-gradient(to bottom, rgba(11,11,11,0) 25%, var(--bg) 65%),
-      linear-gradient(to bottom, rgba(11,11,11,0.1) 0%, rgba(11,11,11,0.3) 100%);
+  .social-rail::before,
+  .social-rail::after {
+    width: 40px;
+    height: 1px;
   }
-  .hero-content { padding: 50vh 1.5rem 3rem; max-width: none; }
-  .hero h1 { font-size: 2.2rem; }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .about-photo-wrapper { order: -1; }
+  .about-photo { max-width: 280px; }
 
   section { padding: 4rem 1.5rem; }
 
-  .timeline { flex-direction: column; gap: 0; }
-  .timeline::before { top: 0; bottom: 0; left: 5px; width: 2px; height: auto; right: auto; }
-  .timeline-item { padding-top: 0; padding-left: 2rem; padding-bottom: 1.25rem; min-width: auto; }
-  .timeline-dot { top: 2px; }
+  .timeline-item { min-width: 140px; }
 
   .case-header { flex-wrap: wrap; gap: 0.75rem; }
   .case-metrics { text-align: left; }
@@ -712,8 +866,17 @@ footer {
 }
 
 @media (max-width: 600px) {
-  .hero h1 { font-size: 1.9rem; }
+  .hero-name { font-size: 1.5rem; }
+  .hero h1 { font-size: 2rem; }
   .hero-sub { font-size: 0.95rem; }
+  .hero-orb { width: 280px; height: 280px; }
+  .social-rail { display: none; }
+  .about-photo { max-width: 240px; }
+  .timeline-item { min-width: 120px; }
+  .timeline-company { font-size: 0.85rem; }
+  .timeline-desc { font-size: 0.65rem; }
+  .timeline-role { font-size: 0.7rem; }
+  .timeline-logo img { max-height: 20px; max-width: 64px; }
   .results-grid { grid-template-columns: 1fr 1fr; }
   .case-header { padding: 1rem; }
   .case-body-inner { padding: 0 1rem 1.25rem; }
@@ -724,6 +887,15 @@ footer {
 </style>
 </head>
 <body>
+
+<!-- SVG Clip Path for blob photo mask -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <clipPath id="blob-clip" clipPathUnits="objectBoundingBox">
+      <path d="M0.5,0.02 C0.75,0,1,0.15,0.97,0.4 C1.02,0.65,0.9,0.85,0.7,0.95 C0.55,1.02,0.35,1.02,0.2,0.92 C0.05,0.82,-0.02,0.6,0.03,0.35 C0.06,0.15,0.25,0,0.5,0.02 Z" />
+    </clipPath>
+  </defs>
+</svg>
 
 <!-- NAV -->
 <nav id="navbar">
@@ -738,50 +910,85 @@ footer {
 
 <!-- HERO -->
 <section class="hero" id="hero">
-  <div class="hero-image"></div>
-  <div class="hero-overlay"></div>
+  <div class="hero-orb"></div>
+  <div class="hero-particles">
+    <span class="particle"></span><span class="particle"></span><span class="particle"></span>
+    <span class="particle"></span><span class="particle"></span><span class="particle"></span>
+    <span class="particle"></span><span class="particle"></span><span class="particle"></span>
+    <span class="particle"></span><span class="particle"></span><span class="particle"></span>
+  </div>
   <div class="hero-content">
-    <div class="hero-name">Lia Jun</div>
-    <h1>I take brands into markets they've never been.</h1>
-    <p class="hero-sub">Brand strategy, product launches, and performance marketing. Three years across brand-side, platform-side, and agency-side — from Seoul to the US to Southeast Asia.</p>
+    <div class="hero-name">Hi, I'm Lia.</div>
+    <h1>Full-stack Growth Marketer.</h1>
+    <p class="hero-sub">I spot what others miss and build around it.</p>
     <a href="#work" class="hero-cta">
       See the work
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"/></svg>
     </a>
   </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
 </section>
+
+<!-- SOCIAL RAIL -->
+<div class="social-rail">
+  <a href="mailto:liabia927@gmail.com" aria-label="Email">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
+  </a>
+  <a href="https://linkedin.com/in/mokryeon-jun-b39078207" target="_blank" rel="noopener" aria-label="LinkedIn">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+  </a>
+  <a href="https://tiktok.com/@1it_u" target="_blank" rel="noopener" aria-label="TikTok">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+  </a>
+  <a href="https://x.com/liajun7" target="_blank" rel="noopener" aria-label="X / Twitter">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.7 16h4.3M4 20L20 4"/><path d="M8 20l-4 0M20 4l-4 0"/></svg>
+  </a>
+</div>
 
 <!-- ABOUT -->
 <section id="about">
   <div class="about reveal">
     <div class="section-label">About</div>
-    <div class="about-content">
-      <p>Growing up between countries taught me something most people learn from textbooks — <strong>the same product needs a completely different story depending on who's buying it.</strong></p>
-      <p>That instinct became my career.</p>
-      <p>At <strong>Aprilskin</strong>, I took over the US market with no team. Launched products, rebuilt the e-commerce site for American shoppers, built the email system from zero, and grew the brand for two years. I treated it like my own company.</p>
-      <p>At <strong>Meta Korea</strong>, I managed the full client lifecycle. Built my portfolio from 6 to 41 accounts through cold outreach. Trained 60 staff members on ad policy. Learned that <strong>the best sales strategy is genuine problem-solving.</strong></p>
-      <p>At <strong>Madup</strong>, I ran performance marketing for Olive Young across Singapore, Philippines, and Malaysia — testing, optimizing, and scaling campaigns in markets with very different consumer behaviors.</p>
-      <p>The thread: <em>I bridge the gap between a product and the people who should be buying it.</em></p>
+    <div class="about-grid">
+      <div class="about-content">
+        <p>My strongest skill is seeing what's not there.</p>
+        <p>I once spent days reading competitor reviews and found an entire customer segment being ignored. That insight became the positioning for a product launch that did <strong>$65K in its first week</strong>. That's how I work. I study what real people say, find the opportunity others overlook, then build everything to capture it. The positioning, the copy, the creative, the campaign.</p>
+        <p>I've done this across multiple markets. Brand-side, platform-side, agency-side. Always starting from nothing.</p>
+      </div>
+      <div class="about-photo-wrapper">
+        <div class="about-photo">
+          <img src="profile.jpg" alt="Lia Jun" loading="lazy" />
+        </div>
+      </div>
     </div>
     <p class="about-tagline">Fast. Sharp instincts. Adapts anywhere.</p>
 
     <div class="timeline">
       <div class="timeline-item apr">
         <div class="timeline-dot"></div>
-        <div class="timeline-year">2021 — 2023</div>
+        <div class="timeline-year">2021 - 2023</div>
+        <div class="timeline-logo"><img src="logo-apr.png" alt="APR Corporation" /></div>
         <div class="timeline-company">APR Corporation</div>
+        <div class="timeline-desc">K-beauty e-commerce with global distribution</div>
         <div class="timeline-role">Brand Manager, US Market</div>
       </div>
       <div class="timeline-item meta">
         <div class="timeline-dot"></div>
-        <div class="timeline-year">2023 — 2024</div>
+        <div class="timeline-year">2023 - 2024</div>
+        <div class="timeline-logo"><img src="logo-meta.jpg" alt="Meta" /></div>
         <div class="timeline-company">Meta Korea</div>
+        <div class="timeline-desc">Facebook & Instagram ads platform</div>
         <div class="timeline-role">Client Solutions Manager</div>
       </div>
       <div class="timeline-item madup">
         <div class="timeline-dot"></div>
         <div class="timeline-year">2025</div>
+        <div class="timeline-logo"><img src="logo-madup.png" alt="Madup" /></div>
         <div class="timeline-company">Madup</div>
+        <div class="timeline-desc">Performance marketing agency</div>
         <div class="timeline-role">Account Manager</div>
       </div>
     </div>
@@ -1177,6 +1384,12 @@ function handleQuiz(el, isTrue) {
   }
   result.classList.add('show');
 }
+
+// Particle randomization
+document.querySelectorAll('.particle').forEach(p => {
+  p.style.left = (Math.random() * 80 + 5) + '%';
+  p.style.top = (Math.random() * 80 + 5) + '%';
+});
 
 // Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(a => {

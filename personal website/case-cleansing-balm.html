@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cleansing Balm US Launch — Lia Jun</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #FF6A1F;
+    --orange-deep: #E9540C;
+    --orange-soft: #FFE6D4;
+    --cream: #FFF6EE;
+    --paper: #FAF6F1;
+    --ink: #1A1410;
+    --ink-2: #3E322A;
+    --muted: #8A7A6E;
+    --line: #EADFD2;
+    --yellow: #F7C744;
+    --mint: #6FB38A;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Inter", system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01";
+  }
+
+  /* Nav */
+  .cs-nav {
+    position: sticky; top: 0; z-index: 40;
+    background: rgba(250,246,241,0.88);
+    backdrop-filter: saturate(180%) blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .cs-nav-inner {
+    max-width: 1280px; margin: 0 auto; padding: 14px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 13px;
+  }
+  .back-link {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.75rem; font-weight: 600;
+    color: var(--ink-2); text-decoration: none; transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--orange-deep); }
+  .nav-brand {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 700; letter-spacing: -0.01em; font-size: 13px;
+  }
+  .nav-brand span { color: var(--orange-deep); }
+  .nav-right {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.7rem; color: var(--muted); letter-spacing: 0.06em;
+  }
+
+  .cs-wrap { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+
+  /* Intro */
+  .intro {
+    padding: 80px 0 60px;
+    display: grid; grid-template-columns: 1.3fr 1fr; gap: 80px;
+    align-items: end;
+    border-bottom: 1px solid var(--line);
+  }
+  .kicker {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--orange-deep); margin-bottom: 24px;
+  }
+  .intro h1 {
+    font-family: "Fraunces", serif;
+    font-weight: 500;
+    font-size: clamp(52px, 7vw, 92px); line-height: 0.95; letter-spacing: -0.03em;
+    margin: 0 0 20px;
+  }
+  .intro h1 em { font-style: italic; color: var(--orange-deep); font-weight: 400; }
+  .sub-tagline {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-size: 22px; line-height: 1.35;
+    color: var(--ink-2);
+    margin: 0 0 32px;
+    max-width: 30ch;
+  }
+  .sub-tagline mark {
+    background: linear-gradient(120deg, transparent 0%, #FFE6D4 15%, #FFD9B8 85%, transparent 100%);
+    background-size: 100% 58%;
+    background-repeat: no-repeat;
+    background-position: 0 62%;
+    color: var(--ink); padding: 0 4px;
+  }
+  .intro p { font-size: 17px; line-height: 1.6; color: var(--ink-2); max-width: 58ch; margin: 0; }
+  .intro p + p { margin-top: 16px; }
+
+  .intro-right { display: flex; flex-direction: column; gap: 36px; }
+  .intro-hero-img {
+    width: 100%; border-radius: 18px; overflow: hidden;
+    background: #F37124;
+    box-shadow: 0 20px 50px -20px rgba(233,84,12,0.28);
+  }
+  .intro-hero-img img { width: 100%; height: auto; display: block; }
+
+  .intro-meta {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+    font-size: 13px;
+  }
+  .intro-meta dt {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 6px;
+  }
+  .intro-meta dd { margin: 0; font-weight: 500; color: var(--ink); }
+
+  /* Sections */
+  .section { padding: 80px 0; border-bottom: 1px solid var(--line); }
+  .section-head {
+    display: grid; grid-template-columns: 200px 1fr; gap: 40px;
+    margin-bottom: 48px;
+  }
+  .section-num {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px; letter-spacing: 0.12em; color: var(--muted);
+  }
+  .section-num b {
+    display: block; color: var(--orange-deep); font-weight: 500;
+    font-size: 13px; margin-bottom: 4px; letter-spacing: 0.16em; text-transform: uppercase;
+  }
+  .section-title {
+    font-family: "Fraunces", serif; font-weight: 500;
+    font-size: clamp(32px, 3.5vw, 44px); line-height: 1.05; letter-spacing: -0.02em;
+    margin: 0;
+  }
+  .section-title em { font-style: italic; color: var(--orange-deep); }
+
+  /* Problem cards */
+  .problems {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    margin-left: 240px;
+  }
+  .problem {
+    background: #fff; border: 1px solid var(--line); border-radius: 14px;
+    padding: 28px;
+  }
+  .problem .num {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; color: var(--orange-deep); letter-spacing: 0.14em;
+    margin-bottom: 16px;
+  }
+  .problem h3 {
+    font-family: "Fraunces", serif; font-weight: 500;
+    font-size: 22px; line-height: 1.2; margin: 0 0 10px;
+  }
+  .problem p { font-size: 14px; line-height: 1.55; color: var(--ink-2); margin: 0; }
+
+  /* Research */
+  .research-grid {
+    margin-left: 240px;
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px;
+    align-items: start;
+  }
+  .shelf-strip {
+    background: #fff; border: 1px solid var(--line); border-radius: 14px;
+    overflow: hidden;
+  }
+  .shelf-caption {
+    padding: 14px 20px; border-bottom: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px; color: var(--muted);
+  }
+  .shelf-caption .tag {
+    background: var(--orange-soft); color: var(--orange-deep);
+    padding: 3px 10px; border-radius: 999px; font-weight: 600;
+    font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .shelf-img {
+    width: 100%; height: 320px; object-fit: cover; object-position: top center;
+    display: block; background: #f0ebe4;
+  }
+  .insights { display: flex; flex-direction: column; gap: 18px; }
+  .insight { border-left: 2px solid var(--orange); padding: 4px 0 4px 20px; }
+  .insight .label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; color: var(--orange-deep);
+    letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px;
+  }
+  .insight p { font-size: 15px; line-height: 1.5; color: var(--ink-2); margin: 0; }
+
+  /* Strategy */
+  .strategy {
+    margin-left: 240px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  }
+  .pillar {
+    background: var(--ink); color: #fff; border-radius: 14px;
+    padding: 28px 22px 24px;
+    min-height: 220px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .pillar:nth-child(2) { background: var(--orange); }
+  .pillar:nth-child(3) { background: var(--cream); color: var(--ink); border: 1px solid var(--line); }
+  .pillar:nth-child(4) { background: #fff; color: var(--ink); border: 1px solid var(--line); }
+  .pillar .step {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; opacity: 0.7; letter-spacing: 0.14em;
+  }
+  .pillar h4 {
+    font-family: "Fraunces", serif; font-weight: 500;
+    font-size: 24px; line-height: 1.1; margin: 14px 0 8px;
+  }
+  .pillar p { font-size: 13px; line-height: 1.5; margin: 0; opacity: 0.85; }
+
+  /* Strategy visuals */
+  .strategy-visuals { margin-left: 240px; margin-top: 48px; }
+  .vis-label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--orange-deep); margin-bottom: 20px;
+  }
+
+  /* Launch timeline */
+  .launch-timeline {
+    display: grid;
+    grid-template-columns: 1fr 40px 1fr 40px 1fr 40px 1fr;
+    align-items: center;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 2rem 1.75rem;
+    box-shadow: 0 2px 8px rgba(26,20,16,0.06);
+    overflow-x: auto;
+  }
+  .tl-node {
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center; gap: 0.6rem;
+  }
+  .tl-dot {
+    width: 52px; height: 52px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; flex-shrink: 0;
+  }
+  .tl-dot.d1 { background: var(--orange-soft); border: 2px solid #FFC9A0; }
+  .tl-dot.d2 { background: #FFF3E8; border: 2px solid #FFD4A8; }
+  .tl-dot.d3 { background: #FFF0F8; border: 2px solid #F8C8E8; }
+  .tl-dot.d4 { background: var(--cream); border: 2px solid #FFD4A8; }
+  .tl-label {
+    font-family: "Fraunces", serif; font-size: 0.9rem; font-weight: 600;
+    color: var(--ink); line-height: 1.2;
+  }
+  .tl-sub { font-size: 0.68rem; color: var(--ink-2); line-height: 1.4; max-width: 100px; }
+  .tl-arrow {
+    height: 2px; background: var(--line); position: relative;
+    flex-shrink: 0; margin-top: -20px;
+  }
+  .tl-arrow::after {
+    content: ''; position: absolute; right: -1px; top: -3px;
+    width: 0; height: 0;
+    border-left: 5px solid var(--line);
+    border-top: 3.5px solid transparent;
+    border-bottom: 3.5px solid transparent;
+  }
+
+  /* Bundle images */
+  .bundle-imgs {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    margin-top: 40px; max-width: 460px;
+  }
+  .bundle-imgs img {
+    width: 100%; display: block; border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(26,20,16,0.1);
+  }
+
+  /* Live CTA */
+  .live-cta {
+    background: linear-gradient(180deg, #FFE6D4 0%, #FFD4B8 100%);
+    padding: 100px 0;
+  }
+  .live-inner {
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px;
+    align-items: center;
+  }
+  .live-copy .section-num { margin-bottom: 24px; display: block; }
+  .live-title {
+    font-family: "Fraunces", serif; font-weight: 500;
+    font-size: clamp(40px, 5vw, 64px); line-height: 1; letter-spacing: -0.025em;
+    margin: 0 0 22px;
+  }
+  .live-title em { font-style: italic; color: var(--orange-deep); }
+  .live-copy p {
+    font-size: 17px; line-height: 1.6; color: var(--ink-2);
+    max-width: 52ch; margin: 0 0 32px;
+  }
+  .live-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .live-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--ink); color: #fff;
+    padding: 16px 28px; border-radius: 999px;
+    font-weight: 700; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase;
+    text-decoration: none; transition: all 180ms;
+  }
+  .live-btn:hover { background: var(--orange-deep); transform: translateY(-1px); }
+  .live-url {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; color: var(--ink-2); letter-spacing: 0.04em;
+  }
+  .live-art {
+    background: #fff; border-radius: 20px;
+    aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center;
+    overflow: hidden; box-shadow: 0 30px 60px -20px rgba(233,84,12,0.25);
+  }
+  .live-art img { max-width: 88%; max-height: 88%; object-fit: contain; }
+
+  /* Footer nav */
+  .case-footer-nav {
+    border-top: 1px solid var(--line);
+    padding: 2rem 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 1280px; margin: 0 auto;
+  }
+  .footer-nav-link {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8125rem; font-weight: 600;
+    color: var(--ink-2); text-decoration: none; transition: color 0.2s;
+  }
+  .footer-nav-link:hover { color: var(--orange-deep); }
+
+  /* Responsive */
+  @media (max-width: 960px) {
+    .intro { grid-template-columns: 1fr; gap: 40px; }
+    .section-head { grid-template-columns: 1fr; }
+    .problems { margin-left: 0; grid-template-columns: 1fr; }
+    .research-grid { margin-left: 0; grid-template-columns: 1fr; }
+    .strategy { margin-left: 0; grid-template-columns: 1fr 1fr; }
+    .strategy-visuals { margin-left: 0; }
+    .live-inner { grid-template-columns: 1fr; }
+    .launch-timeline { grid-template-columns: 1fr; gap: 1rem; }
+    .tl-arrow { display: none; }
+  }
+  @media (max-width: 600px) {
+    .cs-wrap { padding: 0 20px; }
+    .cs-nav-inner { padding: 14px 20px; }
+    .case-footer-nav { padding: 2rem 20px; }
+    .nav-right { display: none; }
+    .intro { padding: 48px 0 40px; }
+    .intro p { font-size: 15px; }
+    .section { padding: 60px 0; }
+    .strategy { grid-template-columns: 1fr; }
+    .bundle-imgs { max-width: 100%; grid-template-columns: 1fr; }
+    .live-cta { padding: 60px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="cs-nav">
+  <div class="cs-nav-inner">
+    <a href="playground.html#work" class="back-link">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+      Work
+    </a>
+    <div class="nav-brand">Case Study <span>/ Cleansing Balm US Launch</span></div>
+    <div class="nav-right">APR CORPORATION · 2022</div>
+  </div>
+</nav>
+
+<!-- Intro -->
+<section class="cs-wrap intro">
+  <div>
+    <div class="kicker">APR Corp · APRILSKIN US</div>
+    <h1>Cleansing Balm<br><em>US Launch</em></h1>
+    <p class="sub-tagline">Turning a shelf regular into a story by claiming <mark>the niche nobody else wanted.</mark></p>
+    <p>The US cleansing balm category was already crowded. We were launching APRILSKIN's Carrotene IPMP Hydromelt Cleansing Balm into that shelf.</p>
+    <p>Digging into competitor reviews, I found the category's two loudest complaints pointed to the same overlooked audience, and straight at our hero ingredient. That became the USP, the launch story, and the bestseller.</p>
+  </div>
+  <div class="intro-right">
+    <div class="intro-hero-img">
+      <img src="case-assets/cb/cb-hero-model.png" alt="APRILSKIN Carrotene IPMP Hydromelt Cleansing Balm">
+    </div>
+    <dl class="intro-meta">
+      <div><dt>Role</dt><dd>Brand lead, APRILSKIN US</dd></div>
+      <div><dt>Year</dt><dd>2022</dd></div>
+      <div><dt>Scope</dt><dd>GTM · Positioning · Copy</dd></div>
+      <div><dt>Result</dt><dd>Brand-site bestseller · $65K launch week</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- 01: The barrier -->
+<section class="cs-wrap section" id="problem">
+  <div class="section-head">
+    <div class="section-num"><b>01</b>The barrier</div>
+    <h2 class="section-title">Entering a category where <em>someone already won.</em></h2>
+  </div>
+  <div class="problems">
+    <div class="problem">
+      <div class="num">01</div>
+      <h3>The shelf was full</h3>
+      <p>Banila Co Clean It Zero, Clinique Take The Day Off, Elemis Pro-Collagen, Farmacy Green Clean: all established bestsellers with loyal buyers. A new entrant couldn't out-brand them.</p>
+    </div>
+    <div class="problem">
+      <div class="num">02</div>
+      <h3>The pitch was identical</h3>
+      <p>Every balm promised the same thing: melts makeup, gentle, moisturizing. No brand owned a clear differentiator. Launching with the same pitch meant being one more jar.</p>
+    </div>
+    <div class="problem">
+      <div class="num">03</div>
+      <h3>A reason to exist</h3>
+      <p>To justify a US launch, the product needed a specific customer who wasn't being served and a story that pointed directly at them.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02: The research -->
+<section class="cs-wrap section" id="research">
+  <div class="section-head">
+    <div class="section-num"><b>02</b>The research</div>
+    <h2 class="section-title">I read hundreds of <em>competitor reviews.</em><br>The complaints repeated.</h2>
+  </div>
+  <div class="research-grid">
+    <div class="shelf-strip">
+      <div class="shelf-caption">
+        <span>Sephora · cleansing balm · sorted by best-selling</span>
+        <span class="tag">Competitor audit</span>
+      </div>
+      <img class="shelf-img" src="case-assets/cb/cb-sephora.png" alt="Sephora cleansing balm category">
+    </div>
+    <div class="insights">
+      <div class="insight">
+        <div class="label">Complaint 01 · removal</div>
+        <p>"It doesn't fully remove my mascara." Shoppers said they had to double cleanse or rub harder, and when they rubbed, it stung their eyes.</p>
+      </div>
+      <div class="insight">
+        <div class="label">Complaint 02 · breakouts</div>
+        <p>"I have oily / acne-prone skin and this broke me out." The category is oil-based by nature, so its biggest critics were the people who need cleansing most.</p>
+      </div>
+      <div class="insight">
+        <div class="label">The insight</div>
+        <p>Nobody was making a cleansing balm <em>for</em> acne-prone skin. The whole category was written off by that audience. A niche was hiding in plain sight.</p>
+      </div>
+      <div class="insight">
+        <div class="label">The fit</div>
+        <p>Our hero ingredient, Carrotene IPMP, is an acne-calming active. The product was already built for the gap. It just hadn't been positioned that way.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03: The strategy -->
+<section class="cs-wrap section" id="strategy">
+  <div class="section-head">
+    <div class="section-num"><b>03</b>The strategy</div>
+    <h2 class="section-title">A <em>cleansing balm</em> for acne-prone skin.</h2>
+  </div>
+  <div class="strategy">
+    <div class="pillar">
+      <div class="step">Positioning</div>
+      <div>
+        <h4>Claim the niche</h4>
+        <p>Lead every touchpoint with "cleansing balm for acne-prone skin." A USP no competitor was claiming, backed by Carrotene IPMP as proof.</p>
+      </div>
+    </div>
+    <div class="pillar">
+      <div class="step">Timing</div>
+      <div>
+        <h4>Build up, peak at Halloween</h4>
+        <p>Dropped Sept 1 to build recognition. Seeded to heavy-makeup and drag-queen influencers mid-September, putting the product at the exact moment people were scrubbing off costume makeup.</p>
+      </div>
+    </div>
+    <div class="pillar">
+      <div class="step">Product page</div>
+      <div>
+        <h4>Lead with proof</h4>
+        <p>Put the Carrotene IPMP ingredient story, the non-comedogenic certification, and a clear ritual above the fold, so a shopper with acne-prone skin could see exactly why it was made for them.</p>
+      </div>
+    </div>
+    <div class="pillar">
+      <div class="step">Promotion</div>
+      <div>
+        <h4>Bundle with the hero line</h4>
+        <p>Limited-edition Halloween set, paired with our most loved serum. Existing Carrotene fans had an instant reason to try the balm, and the bundle borrowed the serum's credibility.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04: Live page -->
+<section class="live-cta" id="live">
+  <div class="cs-wrap live-inner">
+    <div class="live-copy">
+      <span class="section-num" style="margin-bottom:24px; display:block;"><b>04</b>The launch · live</span>
+      <h2 class="live-title">See the <em>live page</em><br>I shipped.</h2>
+      <p>The launch page went live on aprilskin.us and became the bestseller on the brand's US site. Visit the real product page to see the positioning, the ritual, and the ingredient story in full production.</p>
+      <div class="live-actions">
+        <a href="https://aprilskin.us/products/carrotene-ipmp-hydromelt-cleansing-balm" target="_blank" rel="noopener" class="live-btn">
+          Visit live page
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"></path></svg>
+        </a>
+        <span class="live-url">aprilskin.us / carrotene-ipmp-hydromelt-cleansing-balm</span>
+      </div>
+    </div>
+    <div class="live-art">
+      <img src="case-assets/cb/cb-product-a.png" alt="Carrotene IPMP Hydromelt Cleansing Balm">
+    </div>
+  </div>
+</section>
+
+<!-- Footer nav -->
+<div class="case-footer-nav">
+  <a href="case-localization.html" class="footer-nav-link">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+    US Website Localization
+  </a>
+  <a href="case-email.html" class="footer-nav-link">
+    Email Marketing System
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+  </a>
+</div>
+
+</body>
+</html>
