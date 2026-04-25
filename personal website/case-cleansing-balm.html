@@ -346,8 +346,17 @@
   @media (max-width: 600px) {
     .cs-wrap { padding: 0 20px; }
     .cs-nav-inner { padding: 14px 20px; }
-    .case-footer-nav { padding: 2rem 20px; }
+    .case-footer-nav {
+      padding: 2rem 20px;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.75rem;
+    }
+    .footer-nav-link { justify-content: center; text-align: center; }
     .nav-right { display: none; }
+    .nav-brand span { display: none; }
+    .cs-nav-inner, .case-footer-nav, .back-link, .footer-nav-link, .nav-brand { min-width: 0; }
+    .footer-nav-link { flex-wrap: wrap; }
     .intro { padding: 48px 0 40px; }
     .intro p { font-size: 15px; }
     .section { padding: 60px 0; }

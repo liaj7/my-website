@@ -563,12 +563,40 @@ body {
   .email-comparison, .two-col-images, .ba-bullets { grid-template-columns: 1fr; }
   .workflow-timeline {
     flex-direction: column;
+    align-items: stretch;
     gap: 1.5rem;
     padding: 2rem 1.5rem;
   }
-  .timeline-connector { flex-direction: row; width: auto; padding-top: 0; padding: 0; }
-  .timeline-gap-label { display: none; }
+  .timeline-node { width: 100%; }
+  .timeline-connector {
+    align-self: center;
+    flex-direction: column;
+    width: auto;
+    height: 36px;
+    justify-content: center;
+    padding: 0;
+    gap: 0.25rem;
+  }
+  .timeline-connector .tc-arrow { transform: rotate(90deg); }
+  .timeline-gap-label { display: block; }
   .case-meta-row { gap: 1rem; }
+  .top-bar-right { display: none; }
+  .case-footer-nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  .footer-nav-link {
+    justify-content: center;
+    text-align: center;
+  }
+  .top-bar,
+  .case-footer-nav,
+  .back-link,
+  .footer-nav-link {
+    min-width: 0;
+  }
+  .footer-nav-link { flex-wrap: wrap; }
 }
 </style>
 </head>

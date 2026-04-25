@@ -1182,6 +1182,20 @@ footer {
   .meta-phases { grid-template-columns: 1fr; }
 }
 
+@media (max-width: 700px) {
+  .tiktok-row {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 1rem;
+  }
+  .tiktok-wrapper {
+    aspect-ratio: auto;
+    height: clamp(540px, 150vw, 640px);
+  }
+}
+
 @media (max-width: 600px) {
   nav { top: 1rem; }
   .hero h1 { font-size: 1.8rem; }
@@ -1192,7 +1206,6 @@ footer {
   .results-grid { grid-template-columns: 1fr 1fr; }
   .case-header { padding: 1rem; }
   .case-body-inner { padding: 0 1rem 1.25rem; }
-  .tiktok-row { gap: 0.5rem; }
   .results-inline { gap: 1rem; }
 }
 </style>

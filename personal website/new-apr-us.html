@@ -7,6 +7,7 @@
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { font-size: 14px; }
+html { background: #f4f0ec; }
 body {
   font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
   background: #fff;
@@ -14,7 +15,11 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   width: 100%;
+  max-width: 430px;
+  min-height: 100vh;
+  margin: 0 auto;
   overflow-x: hidden;
+  box-shadow: 0 0 40px rgba(26, 26, 26, 0.08);
 }
 
 /* ── NAV ── */
@@ -128,6 +133,9 @@ body {
   background: #fff;
   cursor: pointer;
 }
+.variant-btn:disabled {
+  cursor: not-allowed;
+}
 .variant-btn.active {
   border-color: #c07040;
   color: #c07040;
@@ -162,6 +170,10 @@ body {
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
 }
+.qty-btn:disabled {
+  color: #bbb;
+  cursor: not-allowed;
+}
 .qty-num {
   width: 34px;
   text-align: center;
@@ -183,6 +195,9 @@ body {
   border-radius: 8px;
   cursor: pointer;
   margin-bottom: 8px;
+}
+.add-to-cart.added {
+  background: #c07040;
 }
 .trust-badges {
   display: flex;
@@ -463,6 +478,14 @@ body {
 }
 .faq-item.open .faq-a { display: block; }
 .faq-item.open .chevron { transform: rotate(180deg); }
+
+@media (max-width: 430px) {
+  html { background: #fff; }
+  body {
+    max-width: none;
+    box-shadow: none;
+  }
+}
 </style>
 </head>
 <body>
@@ -516,20 +539,20 @@ body {
 
   <div class="variant-label">SIZE</div>
   <div class="variants">
-    <div class="variant-btn active">SINGLE — $24.00</div>
-    <div class="variant-btn soldout">2EA + Free Gift — $33.60</div>
+    <button class="variant-btn active" type="button">SINGLE — $24.00</button>
+    <button class="variant-btn soldout" type="button" disabled>2EA + Free Gift — $33.60</button>
   </div>
 
   <div class="qty-row">
     <span class="qty-label">QTY</span>
     <div class="qty-control">
-      <button class="qty-btn">−</button>
+      <button class="qty-btn" type="button" aria-label="Decrease quantity" data-qty-action="decrease">−</button>
       <div class="qty-num">1</div>
-      <button class="qty-btn">+</button>
+      <button class="qty-btn" type="button" aria-label="Increase quantity" data-qty-action="increase">+</button>
     </div>
   </div>
 
-  <button class="add-to-cart">ADD TO CART</button>
+  <button class="add-to-cart" type="button">ADD TO CART</button>
 
   <div class="trust-badges">
     <div class="trust-badge"><span class="trust-badge-icon">🌱</span> Vegan</div>
@@ -725,6 +748,48 @@ function switchTab(tabId, btn) {
 function toggleFaq(el) {
   const item = el.parentElement;
   item.classList.toggle('open');
+}
+
+const qtyNum = document.querySelector('.qty-num');
+const qtyButtons = document.querySelectorAll('.qty-btn');
+const addToCart = document.querySelector('.add-to-cart');
+const variantButtons = document.querySelectorAll('.variant-btn:not(:disabled)');
+
+variantButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    variantButtons.forEach(option => option.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+function updateQtyButtons(qty) {
+  qtyButtons.forEach(btn => {
+    btn.disabled = btn.dataset.qtyAction === 'decrease' && qty <= 1;
+  });
+}
+
+if (qtyNum && qtyButtons.length) {
+  let qty = Number(qtyNum.textContent) || 1;
+  updateQtyButtons(qty);
+  qtyButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      qty += btn.dataset.qtyAction === 'increase' ? 1 : -1;
+      qty = Math.max(1, Math.min(qty, 9));
+      qtyNum.textContent = qty;
+      updateQtyButtons(qty);
+    });
+  });
+}
+
+if (addToCart) {
+  addToCart.addEventListener('click', () => {
+    addToCart.textContent = 'ADDED TO CART';
+    addToCart.classList.add('added');
+    window.setTimeout(() => {
+      addToCart.textContent = 'ADD TO CART';
+      addToCart.classList.remove('added');
+    }, 1600);
+  });
 }
 </script>
 </body>

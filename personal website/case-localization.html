@@ -753,6 +753,23 @@ body {
   .top-bar, .case-hero, .work-items, .comparison-section { padding-left: 1.25rem; padding-right: 1.25rem; }
   .phone-shell { width: 250px; }
   .work-results { gap: 0.5rem; }
+  .top-bar-right { display: none; }
+  .case-footer-nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  .footer-nav-link {
+    justify-content: center;
+    text-align: center;
+  }
+  .top-bar,
+  .case-footer-nav,
+  .back-link,
+  .footer-nav-link {
+    min-width: 0;
+  }
+  .footer-nav-link { flex-wrap: wrap; }
 }
 </style>
 </head>
