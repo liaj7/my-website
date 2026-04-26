@@ -518,6 +518,10 @@ section { padding: 5rem 3rem; }
   border-radius: 6px;
   margin-bottom: 0.65rem;
 }
+.timeline-card.madup .timeline-logo {
+  width: 72px;
+  height: 48px;
+}
 
 .timeline-year {
   font-family: var(--mono);
@@ -835,6 +839,69 @@ section { padding: 5rem 3rem; }
 }
 .collage-label-title { font-size: 0.85rem; font-weight: 500; color: #fff; margin-bottom: 0.15rem; }
 .collage-label-desc { font-size: 0.75rem; color: rgba(255,255,255,0.7); font-weight: 300; }
+.ad-carousel {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+.ad-carousel-track {
+  display: flex;
+  height: 100%;
+  transform: translateX(calc(var(--slide, 0) * -100%));
+  transition: transform 0.32s ease;
+}
+.ad-carousel-slide {
+  flex: 0 0 100%;
+  height: 100%;
+}
+.ad-carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.ad-carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 50%;
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 3;
+}
+.ad-carousel-btn.prev { left: 0.75rem; }
+.ad-carousel-btn.next { right: 0.75rem; }
+.ad-carousel-dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 3.65rem;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  gap: 0.45rem;
+}
+.ad-carousel-dot {
+  width: 7px;
+  height: 7px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.55);
+  cursor: pointer;
+  padding: 0;
+}
+.ad-carousel-dot.active {
+  width: 18px;
+  border-radius: 999px;
+  background: #fff;
+}
 
 /* Meta sales cycle — straight line */
 .sales-cycle-wrap { margin: 1.25rem 0 0; }
@@ -1558,14 +1625,23 @@ footer {
     </div>
 
     <div class="collage-row reveal">
-      <div class="collage-item" style="overflow-y:auto;max-height:420px;scroll-behavior:smooth;position:relative;">
-        <div style="position:sticky;top:0.75rem;right:0.75rem;z-index:4;display:flex;justify-content:flex-end;pointer-events:none;padding:0 0.75rem;">
-          <span style="background:rgba(0,0,0,0.55);color:#fff;font-size:0.7rem;font-weight:500;padding:0.3rem 0.65rem;border-radius:100px;display:flex;align-items:center;gap:0.35rem;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-            Scroll
-          </span>
+      <div class="collage-item">
+        <div class="ad-carousel" data-carousel>
+          <div class="ad-carousel-track">
+            <div class="ad-carousel-slide">
+              <img src="personal website/case-assets/ad-creative-gemini.png" alt="Aprilskin concealer campaign concept">
+            </div>
+            <div class="ad-carousel-slide">
+              <img src="personal website/case-assets/ad-creative-chatgpt.png" alt="Aprilskin cushion campaign concept">
+            </div>
+          </div>
+          <button class="ad-carousel-btn prev" type="button" aria-label="Previous ad creative" data-carousel-prev>‹</button>
+          <button class="ad-carousel-btn next" type="button" aria-label="Next ad creative" data-carousel-next>›</button>
+          <div class="ad-carousel-dots" aria-hidden="true">
+            <button class="ad-carousel-dot active" type="button" data-carousel-dot="0"></button>
+            <button class="ad-carousel-dot" type="button" data-carousel-dot="1"></button>
+          </div>
         </div>
-        <img src="personal website/case-assets/ad-creative-photoshop.png" alt="Ad Creative" style="width:100%;height:auto;display:block;" />
         <div class="collage-label">
           <div class="collage-label-title">Ad Creative</div>
           <div class="collage-label-desc">Image ads created with Photoshop</div>
@@ -1709,6 +1785,24 @@ function toggleCase(card) {
   if (isOpen) { card.classList.remove('open'); body.style.maxHeight = '0'; }
   else { card.classList.add('open'); body.style.maxHeight = body.scrollHeight + 'px'; }
 }
+
+document.querySelectorAll('[data-carousel]').forEach(carousel => {
+  const slides = carousel.querySelectorAll('.ad-carousel-slide');
+  const dots = carousel.querySelectorAll('[data-carousel-dot]');
+  let index = 0;
+
+  function showSlide(nextIndex) {
+    index = (nextIndex + slides.length) % slides.length;
+    carousel.style.setProperty('--slide', index);
+    dots.forEach((dot, dotIndex) => dot.classList.toggle('active', dotIndex === index));
+  }
+
+  carousel.querySelector('[data-carousel-prev]')?.addEventListener('click', () => showSlide(index - 1));
+  carousel.querySelector('[data-carousel-next]')?.addEventListener('click', () => showSlide(index + 1));
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => showSlide(Number(dot.dataset.carouselDot)));
+  });
+});
 
 // Quiz
 let quizAnswered = false;
