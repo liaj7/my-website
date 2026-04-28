@@ -1170,7 +1170,7 @@ section { padding: 5rem 3rem; }
 
 /* — CONTACT — */
 .contact {
-  max-width: 600px;
+  max-width: 760px;
   margin: 0 auto;
   text-align: center;
   padding-bottom: 5rem;
@@ -1186,7 +1186,7 @@ section { padding: 5rem 3rem; }
   display: flex;
   justify-content: center;
   gap: 0.75rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 .contact-link {
   display: flex;
@@ -1200,6 +1200,7 @@ section { padding: 5rem 3rem; }
   border: 1.5px solid rgba(45,42,38,0.1);
   border-radius: 100px;
   transition: all 0.2s;
+  white-space: nowrap;
 }
 .contact-link:hover {
   border-color: var(--peach);
@@ -1267,25 +1268,27 @@ footer {
   .mobile-tags {
     display: flex;
     justify-content: center;
-    gap: 0.5rem;
-    flex-wrap: wrap;
+    gap: 0.35rem;
+    flex-wrap: nowrap;
     margin-top: 1rem;
     order: 3;
+    width: 100%;
   }
   .mobile-tags .mobile-tag {
     background: var(--bg-card);
     border: 1px solid rgba(45,42,38,0.08);
     border-radius: var(--radius-sm);
-    padding: 0.4rem 0.7rem;
-    font-size: 0.7rem;
+    padding: clamp(0.28rem, 1vw, 0.4rem) clamp(0.38rem, 1.6vw, 0.7rem);
+    font-size: clamp(0.56rem, 2.1vw, 0.7rem);
     font-weight: 500;
     color: var(--text);
     display: flex;
     align-items: center;
     gap: 0.3rem;
     box-shadow: var(--shadow-sm);
+    white-space: nowrap;
   }
-  .mobile-tags .mobile-tag .emoji { font-size: 0.85rem; }
+  .mobile-tags .mobile-tag .emoji { font-size: clamp(0.7rem, 2.5vw, 0.85rem); }
 
   .metrics-strip { grid-template-columns: repeat(2, 1fr); padding: 0 1.5rem 3rem; }
 
@@ -1331,6 +1334,16 @@ footer {
   .case-header { padding: 1rem; }
   .case-body-inner { padding: 0 1rem 1.25rem; }
   .results-inline { gap: 1rem; }
+  .contact-links { gap: 0.4rem; }
+  .contact-link {
+    gap: 0.28rem;
+    padding: 0.5rem 0.62rem;
+    font-size: 0.72rem;
+  }
+  .contact-link svg {
+    width: 13px;
+    height: 13px;
+  }
 }
 </style>
 </head>
@@ -1709,9 +1722,9 @@ footer {
     <div class="section-label">Contact</div>
     <div class="section-title">Let's make something happen.</div>
     <div class="contact-links">
-      <a href="mailto:liabia927@gmail.com" class="contact-link">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
-        Email
+      <a href="https://x.com/liajun7" target="_blank" rel="noopener" class="contact-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L2.058 2.25H8.08l4.252 5.625L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+        X
       </a>
       <a href="https://www.linkedin.com/in/lia-jun-b39078207/" target="_blank" rel="noopener" class="contact-link">
         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
@@ -1721,9 +1734,9 @@ footer {
         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
         TikTok
       </a>
-      <a href="https://x.com/liajun7" target="_blank" rel="noopener" class="contact-link">
-        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L2.058 2.25H8.08l4.252 5.625L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
-        X
+      <a href="mailto:liabia927@gmail.com" class="contact-link">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
+        Mail
       </a>
     </div>
   </div>
