@@ -839,6 +839,11 @@ section { padding: 5rem 3rem; }
 }
 .collage-label-title { font-size: 0.85rem; font-weight: 500; color: #fff; margin-bottom: 0.15rem; }
 .collage-label-desc { font-size: 0.75rem; color: rgba(255,255,255,0.7); font-weight: 300; }
+.video-item .collage-label {
+  top: 0;
+  bottom: auto;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.72), transparent);
+}
 .ad-carousel {
   position: relative;
   width: 100%;
@@ -1627,10 +1632,10 @@ footer {
         <div class="ad-carousel" data-carousel>
           <div class="ad-carousel-track">
             <div class="ad-carousel-slide">
-              <img src="case-assets/ad-creative-gemini.png" alt="Aprilskin concealer campaign concept">
+              <img src="case-assets/ad-creative-gemini.webp" alt="Aprilskin concealer campaign concept" width="1024" height="1024" loading="lazy" decoding="async">
             </div>
             <div class="ad-carousel-slide">
-              <img src="case-assets/ad-creative-chatgpt.png" alt="Aprilskin cushion campaign concept">
+              <img src="case-assets/ad-creative-chatgpt.webp" alt="Aprilskin cushion campaign concept" width="1024" height="1024" loading="lazy" decoding="async">
             </div>
           </div>
           <button class="ad-carousel-btn prev" type="button" aria-label="Previous ad creative" data-carousel-prev>‹</button>
@@ -1645,8 +1650,8 @@ footer {
           <div class="collage-label-desc">Image ads created with Photoshop</div>
         </div>
       </div>
-      <div class="collage-item">
-        <video src="../documentary.mp4" controls preload="metadata" aria-label="Long-form video"></video>
+      <div class="collage-item video-item">
+        <video src="../documentary.mp4" poster="case-assets/documentary-poster.jpg" controls preload="metadata" playsinline aria-label="Long-form video"></video>
         <div class="collage-label">
           <div class="collage-label-title">Long-form Video</div>
           <div class="collage-label-desc">University documentary project.</div>
