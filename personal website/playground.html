@@ -349,9 +349,6 @@ nav.scrolled {
 }
 .float-tag .emoji { font-size: 1rem; }
 
-/* Mobile-only tags (hidden on desktop) */
-.mobile-tags { display: none; }
-
 .float-tag.top-right {
   top: 2rem; right: -2.5rem;
   animation-delay: -0.5s;
@@ -1214,7 +1211,7 @@ footer {
   padding: 1.5rem 3rem;
   border-top: 1px solid rgba(45,42,38,0.06);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   font-size: 0.72rem;
   color: var(--text-dim);
 }
@@ -1263,32 +1260,18 @@ footer {
   .hero-sub { max-width: 420px; margin: 0 auto 2rem; }
   .hero-actions { justify-content: center; }
   .hero-badge { margin: 0 auto 1.5rem; }
-  .float-tag { display: none; }
-
-  .mobile-tags {
+  .float-tag {
     display: flex;
-    justify-content: center;
-    gap: 0.35rem;
-    flex-wrap: nowrap;
-    margin-top: 1rem;
-    order: 3;
-    width: 100%;
-  }
-  .mobile-tags .mobile-tag {
-    background: var(--bg-card);
-    border: 1px solid rgba(45,42,38,0.08);
-    border-radius: var(--radius-sm);
-    padding: clamp(0.28rem, 1vw, 0.4rem) clamp(0.38rem, 1.6vw, 0.7rem);
-    font-size: clamp(0.56rem, 2.1vw, 0.7rem);
-    font-weight: 500;
-    color: var(--text);
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    box-shadow: var(--shadow-sm);
+    padding: 0.45rem 0.62rem;
+    border-radius: 12px;
+    font-size: clamp(0.58rem, 2.2vw, 0.7rem);
+    gap: 0.25rem;
     white-space: nowrap;
   }
-  .mobile-tags .mobile-tag .emoji { font-size: clamp(0.7rem, 2.5vw, 0.85rem); }
+  .float-tag .emoji { font-size: clamp(0.72rem, 2.6vw, 0.9rem); }
+  .float-tag.top-right { top: 1.2rem; right: -1.15rem; }
+  .float-tag.bottom-left { bottom: 4.1rem; left: -1.1rem; }
+  .float-tag.bottom-right { bottom: 1.15rem; right: -0.85rem; }
 
   .metrics-strip { grid-template-columns: repeat(2, 1fr); padding: 0 1.5rem 3rem; }
 
@@ -1327,6 +1310,9 @@ footer {
   nav { top: 1rem; }
   .hero h1 { font-size: 1.8rem; }
   .hero-photo-wrapper { width: 240px; height: 290px; }
+  .float-tag.top-right { right: -0.65rem; }
+  .float-tag.bottom-left { left: -0.55rem; }
+  .float-tag.bottom-right { right: -0.45rem; }
   .metrics-strip { gap: 0.65rem; }
   .metric-card { padding: 1rem; }
   .metric-number { font-size: 0.95rem; }
@@ -1399,12 +1385,6 @@ footer {
       </div>
     </div>
 
-    <!-- Mobile-only floating tags -->
-    <div class="mobile-tags">
-      <span class="mobile-tag"><span class="emoji">🔀</span> Brand. Platform. Agency.</span>
-      <span class="mobile-tag"><span class="emoji">🧠</span> Sharp instincts</span>
-      <span class="mobile-tag"><span class="emoji">🎬</span> Creator too</span>
-    </div>
   </div>
 </section>
 
@@ -1692,40 +1672,6 @@ footer {
       </a>
     </div>
 
-    <div class="collage-row reveal">
-      <div class="collage-item">
-        <div class="ad-carousel" data-carousel>
-          <div class="ad-carousel-track">
-            <div class="ad-carousel-slide">
-              <img src="case-assets/ad-creative-gemini.webp" alt="Aprilskin concealer campaign concept" width="1024" height="1024" loading="lazy" decoding="async">
-            </div>
-            <div class="ad-carousel-slide">
-              <img src="case-assets/ad-creative-chatgpt.webp" alt="Aprilskin cushion campaign concept" width="1024" height="1024" loading="lazy" decoding="async">
-            </div>
-          </div>
-          <button class="ad-carousel-btn prev" type="button" aria-label="Previous ad creative" data-carousel-prev>‹</button>
-          <button class="ad-carousel-btn next" type="button" aria-label="Next ad creative" data-carousel-next>›</button>
-          <div class="ad-carousel-dots" aria-hidden="true">
-            <button class="ad-carousel-dot active" type="button" data-carousel-dot="0"></button>
-            <button class="ad-carousel-dot" type="button" data-carousel-dot="1"></button>
-          </div>
-        </div>
-        <div class="collage-label">
-          <div class="collage-label-title">Ad Creative</div>
-          <div class="collage-label-desc">Image ads created with Photoshop</div>
-        </div>
-      </div>
-      <div class="collage-item video-item">
-        <button class="drive-video-poster" type="button" data-drive-video="https://drive.google.com/file/d/12m2G82HyHDu5lKvAlKIPj3v-WSrskd8T/preview" aria-label="Play long-form video">
-          <img src="case-assets/drive-video-poster-009.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
-          <span class="drive-video-play" aria-hidden="true"></span>
-        </button>
-        <div class="collage-label">
-          <div class="collage-label-title">Long-form Video</div>
-          <div class="collage-label-desc">University documentary project.</div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -1764,21 +1710,21 @@ footer {
     <div class="section-label">Contact</div>
     <div class="section-title">Let's make something happen.</div>
     <div class="contact-links">
-      <a href="https://x.com/liajun7" target="_blank" rel="noopener" class="contact-link">
-        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L2.058 2.25H8.08l4.252 5.625L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
-        X
+      <a href="mailto:liabia927@gmail.com" class="contact-link">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
+        Mail
       </a>
       <a href="https://www.linkedin.com/in/lia-jun-b39078207/" target="_blank" rel="noopener" class="contact-link">
         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
         LinkedIn
       </a>
+      <a href="https://x.com/liajun7" target="_blank" rel="noopener" class="contact-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L2.058 2.25H8.08l4.252 5.625L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+        X
+      </a>
       <a href="https://tiktok.com/@1it_u" target="_blank" rel="noopener" class="contact-link">
         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
         TikTok
-      </a>
-      <a href="mailto:liabia927@gmail.com" class="contact-link">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
-        Mail
       </a>
     </div>
   </div>
@@ -1786,7 +1732,6 @@ footer {
 
 <footer>
   <span>&copy; 2026 Lia Jun</span>
-  <span>Built with care and good taste</span>
 </footer>
 
 <script>
@@ -1856,46 +1801,6 @@ function toggleCase(card) {
   if (isOpen) { card.classList.remove('open'); body.style.maxHeight = '0'; }
   else { card.classList.add('open'); body.style.maxHeight = body.scrollHeight + 'px'; }
 }
-
-document.querySelectorAll('[data-carousel]').forEach(carousel => {
-  const slides = carousel.querySelectorAll('.ad-carousel-slide');
-  const dots = carousel.querySelectorAll('[data-carousel-dot]');
-  let index = 0;
-
-  function showSlide(nextIndex) {
-    index = (nextIndex + slides.length) % slides.length;
-    carousel.style.setProperty('--slide', index);
-    dots.forEach((dot, dotIndex) => dot.classList.toggle('active', dotIndex === index));
-  }
-
-  carousel.querySelector('[data-carousel-prev]')?.addEventListener('click', () => showSlide(index - 1));
-  carousel.querySelector('[data-carousel-next]')?.addEventListener('click', () => showSlide(index + 1));
-  dots.forEach(dot => {
-    dot.addEventListener('click', () => showSlide(Number(dot.dataset.carouselDot)));
-  });
-});
-
-function loadDriveVideo(button) {
-  const iframe = document.createElement('iframe');
-  iframe.src = button.dataset.driveVideo;
-  iframe.title = 'Long-form video';
-  iframe.loading = 'lazy';
-  iframe.allow = 'autoplay; fullscreen';
-  iframe.allowFullscreen = true;
-  iframe.setAttribute('allowfullscreen', '');
-  iframe.setAttribute('webkitallowfullscreen', '');
-  button.replaceWith(iframe);
-}
-
-document.querySelectorAll('[data-drive-video]').forEach(button => {
-  button.addEventListener('click', () => loadDriveVideo(button));
-  button.addEventListener('keydown', event => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      loadDriveVideo(button);
-    }
-  });
-});
 
 // Quiz
 let quizAnswered = false;
